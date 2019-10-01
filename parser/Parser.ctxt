@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.params=sc
+comment0.target=Parser(scanner.Scanner)
+comment0.text=\n\ This\ constructs\ the\ parser\ with\ the\ scanner\n\ @param\ sc\ the\ scanner\n
+comment1.params=s
+comment1.target=void\ eat(java.lang.String)
+comment1.text=\n\ This\ eats\ the\ next\ token\ of\ scanner\n\ @param\ s\ checks\ if\ it\ is\ equals\n\ @throws\ IllegalArgumentException\ if\ teh\ current\ token\ \!\=\ s\n
+comment2.params=
+comment2.target=int\ parseNumber()
+comment2.text=\n\ This\ will\ scan\ the\ number\ -\ >\ rules\ of\ num\n\ @precondition\ the\ currentToken\ is\ \ number\n\ @postcondition\ the\ number\ token\ has\ been\ eaten\n\ @return\ the\ value\ of\ the\ parsed\ Integer\n
+comment3.params=
+comment3.target=int\ parseFactor()
+comment3.text=\n\ This\ will\ scan\ the\ factor\n\ factor\ ->\ (factor)\ |\ -factor\ |\ num\n\ @precondition\ the\ currentToken\ is\ \ number\n\ @postcondition\ the\ number\ token\ has\ been\ eaten\n\ @return\ the\ factor\n
+comment4.params=
+comment4.target=int\ parseTerm()
+comment4.text=\n\ This\ scans\ the\ term\n\ term\ ->\ factor\ whileterm\n\ whileterm\ ->\ *\ factor\ whileterm\ |\ /\ factor\ whileterm\ |\ e\n\ factor\ ->\ (term)\ |\ -factor\ |\ num\n\ @return\ the\ final\ term\n
+comment5.params=
+comment5.target=int\ parseExpression()
+comment5.text=\n\ This\ parses\ the\ expressions\n\ \ expr\ ->\ expr\ +\ term\ |\ expr\ -\ term\ |\ term\n
+comment6.params=
+comment6.target=void\ parseWhileBegin()
+comment6.text=\n\ This\ is\ a\ helper\ to\ parseStatement\ that\ parses\ things\ after\ begin\n
+comment7.params=
+comment7.target=void\ parseStatement()
+comment7.text=\n\ This\ parses\ statements\n\ stmt\ ->\ writel(expr)\ |\ Begin\ stmts\ End\n\ stmts\ ->\ stmts\ stmt\ |\ e\n
+numComments=8
