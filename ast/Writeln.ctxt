@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=exp
+comment0.target=Writeln(Expression)
+comment0.text=\n\ Constructor\n\ @param\ exp\ the\ expression\n
+numComments=1

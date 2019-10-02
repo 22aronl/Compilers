@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=var\ exp
+comment0.target=Assignment(java.lang.String,\ Expression)
+comment0.text=\n\ Constructor\ for\ objects\ of\ class\ Assignment\n\ @param\ var\ the\ variable\n\ @param\ exp\ the\ expression\n
+numComments=1

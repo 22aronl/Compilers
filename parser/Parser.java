@@ -1,7 +1,9 @@
 package parser;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 import scanner.*;
+import ast.*;
 
 /**
  * This parses the file and returns what is evaluated
@@ -11,7 +13,7 @@ import scanner.*;
  */
 public class Parser
 {
-    private HashMap<String, Integer> map;
+    private HashMap<String, Expression> map;
     private Scanner sc;
     private String currentToken;
     /**
@@ -21,7 +23,7 @@ public class Parser
     public Parser(Scanner sc)
     {
         this.sc = sc;
-        map = new HashMap<String, Integer>();
+        map = new HashMap<String, Expression>();
         try
         {
             currentToken = this.sc.nextToken();
@@ -59,11 +61,24 @@ public class Parser
      * @postcondition the number token has been eaten
      * @return the value of the parsed Integer
      */
-    private int parseNumber()
+    private ast.Number parseNumber()
     {
         String temp = currentToken;
         eat(currentToken);
-        return Integer.parseInt(temp);
+        return new ast.Number(Integer.parseInt(temp));
+    }
+    
+    public boolean isNumber()
+    {
+        try
+        {
+            Integer.parseInt(currentToken);
+            return false;
+        }
+        catch(Exception e)
+        {
+            return true;
+        }
     }
 
     /**
@@ -73,25 +88,25 @@ public class Parser
      * @postcondition the number token has been eaten
      * @return the factor
      */
-    private int parseFactor()
+    private Expression parseFactor()
     {
         if(currentToken.equals("-"))
         {
             eat(currentToken);
-            return - parseFactor();
+            return new BinOp("*", new ast.Number(-1), parseFactor());
         }
         else if(currentToken.equals("("))
         {
             eat(currentToken);
-            int a = parseExpression();
+            Expression a = parseExpression();
             eat(")");
             return a;
         }
-        else if(map.containsKey(currentToken))
+        else if(isNumber())
         {
             String a = currentToken;
             eat(currentToken);
-            return map.get(a);
+            return new Variable(a);
         }
         else
         {
@@ -106,25 +121,25 @@ public class Parser
      * factor -> (term) | -factor | num
      * @return the final term
      */
-    private int parseTerm()
+    private Expression parseTerm()
     {
-        int temp = parseFactor();
+        Expression temp = parseFactor();
         while(true)
         {
             if(currentToken.equals("*"))
             {
                 eat(currentToken);
-                temp *= parseFactor();
+                temp =  new BinOp("*", temp, parseFactor());
             }
             else if(currentToken.equals("/"))
             {
                 eat(currentToken);
-                temp /= parseFactor();
+                temp =  new BinOp("/", temp, parseFactor());
             }
             else if(currentToken.equals("mod"))
             {
                 eat(currentToken);
-                temp %= parseFactor();
+                temp =  new BinOp("%", temp, parseFactor());
             }
             else
                 break;
@@ -136,20 +151,20 @@ public class Parser
      * This parses the expressions
      *  expr -> expr + term | expr - term | term
      */
-    private int parseExpression()
+    private Expression parseExpression()
     {
-        int temp = parseTerm();
+        Expression temp = parseTerm();
         while(true)
         {
             if(currentToken.equals("+"))
             {
                 eat(currentToken);
-                temp += parseTerm();
+                temp = new BinOp("+", temp, parseTerm());
             }
             else if(currentToken.equals("-"))
             {
                 eat(currentToken);
-                temp -= parseTerm();
+                temp = new BinOp("-", temp, parseTerm());
             }
             else
                 break;
@@ -159,8 +174,9 @@ public class Parser
     
     /**
      * This is a helper to parseStatement that parses things after begin
+     * @param ar the arraylist
      */
-    private void parseWhileBegin()
+    private void parseWhileBegin(ArrayList<Statement> ar)
     {
         if(currentToken.equals("END"))
         {
@@ -169,8 +185,8 @@ public class Parser
         }
         else
         {
-            parseStatement();
-            parseWhileBegin();
+            ar.add(parseStatement());
+            parseWhileBegin(ar);
         }
     }
 
@@ -179,28 +195,32 @@ public class Parser
      * stmt -> writel(expr) | Begin stmts End
      * stmts -> stmts stmt | e
      */
-    public void parseStatement()
+    public Statement parseStatement()
     {
         if(currentToken.equals("BEGIN"))
         {
             eat("BEGIN");
-            parseWhileBegin();
+            ArrayList<Statement> ar = new ArrayList<Statement>();
+            parseWhileBegin(ar);
+            return new Block(ar);
         }
         else if(currentToken.equals("WRITELN"))
         {
             eat("WRITELN");
             eat("(");
-            System.out.println(parseExpression());
+            Expression e = parseExpression();
             eat(")");
             eat(";");
+            return new Writeln(e);
         }
         else
         {
             String temp = currentToken;
             eat(currentToken);
             eat(":=");
-            map.put(temp, parseExpression());
+            Expression e = parseExpression();
             eat(";");
+            return new Assignment(temp, e);
         }
     }
 }
