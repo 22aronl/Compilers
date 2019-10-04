@@ -282,7 +282,7 @@ public class Parser
             eat("FOR");
             Assignment a = (Assignment)parseAssignment();
             eat("DO");
-            ast.Number n = parseNumber();
+            ast.Expression n = parseExpression();
             eat("THEN");
             return new For(a, n, parseStatement());
         }

@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.params=condition\ exp\ statement
-comment0.target=For(Assignment,\ Number,\ Statement)
+comment0.target=For(Assignment,\ Expression,\ Statement)
 comment0.text=\n\ The\ For\ constuctor\n\ @param\ condition\ the\ Assignment\n\ @param\ exp\ the\ number\ to\ go\ up\ to\n\ @param\ statement\ the\ statement\ to\ execute\n
 comment1.params=env
 comment1.target=void\ exec(environment.Environment)

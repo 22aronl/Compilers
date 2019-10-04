@@ -2,17 +2,14 @@ BEGIN
 	x := 2;
 	y := x + 1;
 	x := x + y;
-	WRITELN(x * y);
-	IF x > y THEN 
+	SUM := 3;
+	WRITELN(x);
+	FOR z := 3 DO x + 1 THEN
 	BEGIN
-		WRITELN(x);
-		WRITELN(y);
-	END;
-	x := 0;
-	WHILE x < 10 DO
-	BEGIN
-		WRITELN(x);
-		x := x + 1;
+	SUM := SUM + z;
+	IF SUM = 9 THEN CONTINUE;
+	ELSE
+		WRITELN(SUM);
 	END;
 	
 END;

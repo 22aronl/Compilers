@@ -10,7 +10,7 @@ import environment.*;
 public class For extends Statement
 {
     private Assignment condition;
-    private Number exp;
+    private Expression exp;
     private Statement statement;
     /**
      * The For constuctor
@@ -18,7 +18,7 @@ public class For extends Statement
      * @param exp the number to go up to
      * @param statement the statement to execute
      */
-    public For(Assignment condition, Number exp, Statement statement)
+    public For(Assignment condition, Expression exp, Statement statement)
     {
         this.condition = condition;
         this.exp = exp;
