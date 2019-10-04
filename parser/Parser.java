@@ -42,8 +42,8 @@ public class Parser
     private void eat(String s)
     {
         if(!s.equals(currentToken))
-            throw new IllegalArgumentException("Does Not Match the Given Token in PARSER" + 
-                        s + " " + currentToken);
+            throw new IllegalArgumentException("Does Not Match the Given Token in PARSER :" + 
+                s + " " + currentToken);
 
         try
         {
@@ -67,7 +67,11 @@ public class Parser
         eat(currentToken);
         return new ast.Number(Integer.parseInt(temp));
     }
-    
+
+    /**
+     * Checks if it is number
+     * @return true if it is a number; otherwise false
+     */
     public boolean isNumber()
     {
         try
@@ -171,7 +175,19 @@ public class Parser
         }
         return temp;
     }
-    
+
+    /**
+     * Parses the condition
+     * @return the condition
+     */
+    private Condition parseCondition()
+    {
+        Expression exp1 = parseExpression();
+        String relop =  currentToken;
+        eat(currentToken);
+        return new Condition(relop, exp1, parseExpression());
+    }
+
     /**
      * This is a helper to parseStatement that parses things after begin
      * @param ar the arraylist
@@ -191,9 +207,23 @@ public class Parser
     }
 
     /**
+     * Parses the assingment
+     * @return the assignment
+     */
+    public Assignment parseAssignment()
+    {
+        String temp = currentToken;
+        eat(currentToken);
+        eat(":=");
+        Expression e = parseExpression();
+        return new Assignment(temp, e);
+    }
+
+    /**
      * This parses statements
      * stmt -> writel(expr) | Begin stmts End
      * stmts -> stmts stmt | e
+     * @return the statement
      */
     public Statement parseStatement()
     {
@@ -213,14 +243,54 @@ public class Parser
             eat(";");
             return new Writeln(e);
         }
+        else if(currentToken.equals("IF"))
+        {
+            eat("IF");
+            Condition condition = parseCondition();
+            eat("THEN");
+            Statement stmt = parseStatement();
+            if(currentToken.equals("ELSE"))
+            {
+                eat("ELSE");
+                Statement stmt2 = parseStatement();
+                return new If(condition, stmt, stmt2);
+            }
+            else
+                return new If(condition, stmt);
+        }
+        else if(currentToken.equals("WHILE"))
+        {
+            eat("WHILE");
+            Condition condition = parseCondition();
+            eat("DO");
+            return new While(condition, parseStatement());
+        }
+        else if(currentToken.equals("CONTINUE"))
+        {
+            eat("CONTINUE");
+            eat(";");
+            return new Continue();
+        }
+        else if(currentToken.equals("BREAK"))
+        {
+            eat("BREAK");
+            eat(";");
+            return new Break();
+        }
+        else if(currentToken.equals("FOR"))
+        {
+            eat("FOR");
+            Assignment a = (Assignment)parseAssignment();
+            eat("DO");
+            ast.Number n = parseNumber();
+            eat("THEN");
+            return new For(a, n, parseStatement());
+        }
         else
         {
-            String temp = currentToken;
-            eat(currentToken);
-            eat(":=");
-            Expression e = parseExpression();
+            Assignment a = parseAssignment();
             eat(";");
-            return new Assignment(temp, e);
+            return a;
         }
     }
 }

@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.*;
+import environment.*;
 
 /**
  * Block
@@ -18,5 +19,21 @@ public class Block extends Statement
     public Block(ArrayList<Statement> statements)
     {
         this.statements = statements;
+    }
+    
+    /**
+     * Exectues the code
+     * @param env the environment
+     */
+    public void exec(Environment env) throws SkipException
+    {
+        for(Statement s : statements)
+        {
+            if(s instanceof Break)
+                throw new BreakException();
+            else if(s instanceof Continue)
+                throw new ContinueException();
+            s.exec(env);
+        }
     }
 }

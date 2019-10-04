@@ -1,6 +1,6 @@
 package ast;
 
-
+import environment.*;
 /**
  * Writeln
  * 
@@ -17,5 +17,23 @@ public class Writeln extends Statement
     public Writeln(Expression exp)
     {
         this.exp = exp;
+    }
+    
+    /**
+     * Gets the expression
+     * @return the expression
+     */
+    public Expression getExpression()
+    {
+        return exp;
+    }
+    
+    /**
+     * Exectues the code
+     * @param env the environment
+     */
+    public void exec(Environment env)
+    {
+        System.out.println(exp.eval(env));
     }
 }

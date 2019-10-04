@@ -1,6 +1,6 @@
 package ast;
 
-
+import environment.*;
 /**
  * Abstract class Expression an Expression
  * 
@@ -9,4 +9,10 @@ package ast;
  */
 public abstract class Expression
 {
+    /**
+     * Evalutates the expression
+     * @param env the environemtn
+     * @return the evaluated number
+     */
+    public abstract int eval(Environment env);
 }

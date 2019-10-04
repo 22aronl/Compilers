@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=ContinueException()
+comment0.text=\n\ The\ continue\ exception\n
+comment1.params=reason
+comment1.target=ContinueException(java.lang.String)
+comment1.text=\n\ The\ continue\ exception\n\ @param\ reason\ the\ reason\n
+numComments=2

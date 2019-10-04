@@ -2,4 +2,10 @@
 comment0.params=exp
 comment0.target=Writeln(Expression)
 comment0.text=\n\ Constructor\n\ @param\ exp\ the\ expression\n
-numComments=1
+comment1.params=
+comment1.target=Expression\ getExpression()
+comment1.text=\n\ Gets\ the\ expression\n\ @return\ the\ expression\n
+comment2.params=env
+comment2.target=void\ exec(environment.Environment)
+comment2.text=\n\ Exectues\ the\ code\n\ @param\ env\ the\ environment\n
+numComments=3

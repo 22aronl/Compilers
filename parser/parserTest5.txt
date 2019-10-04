@@ -1,0 +1,4 @@
+BEGIN
+    FOR i := 0 DO 10 THEN WRITELN(i);
+END;
+.

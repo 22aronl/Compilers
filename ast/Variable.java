@@ -1,6 +1,6 @@
 package ast;
 
-
+import environment.*;
 /**
  * Variable
  * 
@@ -17,5 +17,16 @@ public class Variable extends Expression
     public Variable(String name)
     {
         this.name = name;
+    }
+    
+    
+    /**
+     * Evalutates the expression
+     * @param env the environemtn
+     * @return the evaluated thing
+     */
+    public int eval(Environment env)
+    {
+        return env.getVariable(name);
     }
 }

@@ -1,10 +1,10 @@
 package ast;
 
-
+import environment.*;
 /**
  * Assingment
  * 
- * @author AAron Lo
+ * @author Aaron Lo
  * @version 10-1-19
  */
 public class Assignment extends Statement
@@ -21,5 +21,23 @@ public class Assignment extends Statement
     {
         this.var = var;
         this.exp = exp;
+    }
+    
+    /**
+     * Exectues the code
+     * @param env the environment
+     */
+    public void exec(Environment env)
+    {
+        env.setVariable(var, exp.eval(env));
+    }
+    
+    /**
+     * Gets the variable name
+     * @return the variable name
+     */
+    public String getVariable()
+    {
+        return var;
     }
 }

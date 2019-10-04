@@ -198,6 +198,11 @@ public class Scanner
             temp+=currentChar;
             eat(currentChar);
         }
+        else if(temp.equals("<") && currentChar == '>')
+        {
+            temp+=currentChar;
+            eat(currentChar);
+        }
         return temp;
     }
 

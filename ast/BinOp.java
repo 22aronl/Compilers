@@ -1,6 +1,6 @@
 package ast;
 
-
+import environment.*;
 /**
  * Bin Op
  * 
@@ -24,5 +24,24 @@ public class BinOp extends Expression
         this.op = op;
         this.exp1 = exp1;
         this.exp2 = exp2;
+    }
+    
+    /**
+     * Evalutates the expression
+     * @param env the environemtn
+     * @return the value of the expression
+     */
+    public int eval(Environment env)
+    {
+        if(op.equals("*"))
+            return exp1.eval(env) * exp2.eval(env);
+        else if(op.equals("%"))
+            return exp1.eval(env) % exp2.eval(env);
+        else if(op.equals("/"))
+            return exp1.eval(env) / exp2.eval(env);
+        else if(op.equals("+"))
+            return exp1.eval(env) + exp2.eval(env);
+        else
+            return exp1.eval(env) - exp2.eval(env);
     }
 }

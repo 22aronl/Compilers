@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=BreakException()
+comment0.text=\n\ Contructs\ break\ Exception\n
+comment1.params=reason
+comment1.target=BreakException(java.lang.String)
+comment1.text=\n\ Contructs\ break\ exception\ with\ a\ reason\n\ @param\ reason\ the\ reason\ for\ the\ exception\n
+numComments=2

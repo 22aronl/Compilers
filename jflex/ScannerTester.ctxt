@@ -1,5 +1,0 @@
-#BlueJ class context
-comment0.params=args
-comment0.target=void\ main(java.lang.String[])
-comment0.text=\n\ The\ tester\:\ this\ will\ scan\ the\ inputed\ document\ and\ ask\ you\ \n\ \ for\ each\ word\ you\ wish\ to\ find\n\ \ \ \ \ \ then\ it\ will\ output\ all\ instances\ of\ that\ word\ and\ the\ line\ number\n\ \ \ \ \ \ \ \ \ \ EXIT\ -\ to\ exit\n\ @param\ args\ the\ the\ argument\n\ @throws\ IOException\ if\ the\ file\ is\ not\ found\n
-numComments=1

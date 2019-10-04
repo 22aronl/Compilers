@@ -1,6 +1,6 @@
 package ast;
 
-
+import environment.*;
 /**
  * The Number
  * 
@@ -17,5 +17,15 @@ public class Number extends Expression
     public Number(int value)
     {
         this.value = value;
+    }
+    
+    /**
+     * Evalutates the expression
+     * @param env the environemtn
+     * @return the evaluated thing
+     */
+    public int eval(Environment env)
+    {
+        return value;
     }
 }

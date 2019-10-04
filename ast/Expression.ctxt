@@ -1,2 +1,5 @@
 #BlueJ class context
-numComments=0
+comment0.params=env
+comment0.target=int\ eval(environment.Environment)
+comment0.text=\n\ Evalutates\ the\ expression\n\ @param\ env\ the\ environemtn\n\ @return\ the\ evaluated\ number\n
+numComments=1

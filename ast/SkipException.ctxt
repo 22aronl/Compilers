@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=SkipException()
+comment0.text=\n\ The\ skip\ exception\n
+comment1.params=reason
+comment1.target=SkipException(java.lang.String)
+comment1.text=\n\ The\ skip\ exception\ \n\ @param\ reason\ the\ reason\n
+numComments=2

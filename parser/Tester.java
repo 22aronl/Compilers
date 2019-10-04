@@ -3,23 +3,30 @@ package parser;
 import java.io.FileInputStream;
 import java.io.IOException;
 import scanner.*;
+import ast.*;
+import environment.*;
 
 /**
- * Write a description of class Tester here.
+ * The tester
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author AAron Lo
+ * @version 10-3-19
  */
 public class Tester
 {
-    public static void main(String[] args) throws IOException
+    /**
+     * The tester
+     * @param args the arguments
+     */
+    public static void main(String[] args) throws IOException, SkipException
     {
-        for(int i = 0; i < 5; i++)
+        for(int i = 5; i < 7; i++)
         {
             Scanner sc = new Scanner(new FileInputStream("parser/parserTest" + i +".txt"));
             Parser p = new Parser(sc);
+            Environment e = new Environment();
             while(sc.hasNext())
-            p.parseStatement();
+                p.parseStatement().exec(e);
             System.out.println("^^&&^^");
         }
     }

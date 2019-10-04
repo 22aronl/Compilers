@@ -32,6 +32,7 @@ public class Environment
     /**
      * Gets the variable
      * @param variable the variable
+     * @return the int of variable
      */
     public int getVariable(String variable)
     {
