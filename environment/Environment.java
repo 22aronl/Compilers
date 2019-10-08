@@ -1,7 +1,7 @@
 package environment;
 
 import java.util.*;
-
+import ast.*;
 /**
  *Enviroment
  * 
@@ -10,13 +10,15 @@ import java.util.*;
  */
 public class Environment
 {
-    private Map<String, Integer> map;
+    private Map<String, Integer> varMap;
+    private Map<String, ProcedureDeclaration> procedureMap;
     /**
      * Constructor for objects of class Environment
      */
     public Environment()
     {
-        map = new HashMap<String, Integer>();
+        varMap = new HashMap<String, Integer>();
+        procedureMap = new HashMap<String, ProcedureDeclaration>();
     }
     
     /**
@@ -26,7 +28,7 @@ public class Environment
      */
     public void setVariable(String variable, int value)
     {
-        map.put(variable, value);
+        varMap.put(variable, value);
     }
     
     /**
@@ -36,6 +38,16 @@ public class Environment
      */
     public int getVariable(String variable)
     {
-        return map.get(variable);
+        return varMap.get(variable);
+    }
+    
+    public void setProcedure(String name, ProcedureDeclaration dec)
+    {
+        procedureMap.put(name, dec);
+    }
+    
+    public ProcedureDeclaration getProcedure(String name)
+    {
+        return procedureMap.get(name);
     }
 }

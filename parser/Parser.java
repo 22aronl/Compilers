@@ -2,6 +2,7 @@ package parser;
 
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.List;
 import scanner.*;
 import ast.*;
 
@@ -217,6 +218,23 @@ public class Parser
         eat(":=");
         Expression e = parseExpression();
         return new Assignment(temp, e);
+    }
+
+    public Program parseProgram()
+    {
+        List<ProcedureDeclaration> list = new ArrayList<ProcedureDeclaration>();
+        while(currentToken.equals("PROCEDURE"))
+        {
+            eat("PROCEDURE");
+            String name = currentToken + "()";
+            eat(currentToken);
+            eat("()");
+            eat(";");
+            list.add(new ProcedureDeclaration(name, parseStatement()));
+        }
+        eat(".");
+        Statement stmt = parseStatement();
+        return new Program(list, stmt);
     }
 
     /**
