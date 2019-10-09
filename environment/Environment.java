@@ -29,12 +29,21 @@ public class Environment
         parent = p;
     }
     
+    
     /**
      * Sets the variable
      * @param variable the string
      * @param value the value
      */
     public void setVariable(String variable, int value)
+    {
+        if(varMap.containsKey(variable) || parent == null)
+            varMap.put(variable, value);
+        else
+            parent.setVariable(variable, value);
+    }
+    
+    public void declareVariable(String variable, int value)
     {
         varMap.put(variable, value);
     }
@@ -57,18 +66,17 @@ public class Environment
     
     public void setProcedure(String name, ProcedureDeclaration dec)
     {
-        procedureMap.put(name, dec);
+        if(parent == null)
+            procedureMap.put(name, dec);
+        else
+            parent.setProcedure(name, dec);
     }
     
     public ProcedureDeclaration getProcedure(String name)
     {
-        ProcedureDeclaration d = procedureMap.get(name);
-        if(d != null)
-            return d;
-        
         if(parent == null)
-            return null;
-            
-        return parent.getProcedure(name);
+            return procedureMap.get(name);
+        else
+            return parent.getProcedure(name);
     }
 }

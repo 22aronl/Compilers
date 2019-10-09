@@ -116,7 +116,7 @@ public class Parser
                 eat(currentToken);
                 ArrayList<Expression> list = parseMaybeParmExpressions();
                 eat(")");
-                return new ProcedureCall(a+"()", list);
+                return new ProcedureCall(a, list);
             }
             else
                 return new Variable(a);
@@ -234,7 +234,7 @@ public class Parser
         while(currentToken.equals("PROCEDURE"))
         {
             eat("PROCEDURE");
-            String name = currentToken + "()";
+            String name = currentToken;
             eat(currentToken);
             eat("(");
             ArrayList<Variable> listParam = parseMaybeParm();

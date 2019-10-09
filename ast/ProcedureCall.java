@@ -21,14 +21,13 @@ public class ProcedureCall extends Expression
     public int eval(Environment env)
     {
         ProcedureDeclaration dec = env.getProcedure(name);
+        Environment child = new Environment(env);
         try
         {
-            Environment child = new Environment(env);
             ArrayList<Variable> varList = dec.getList();
             for(int i = 0; i < varList.size(); i++)
             {
-                Assignment a = new Assignment(varList.get(i).getName(), list.get(i));
-                a.exec(child);
+                child.declareVariable(varList.get(i).getName(), list.get(i).eval(child));
             }
             dec.getStatement().exec(child);
         }
@@ -36,6 +35,6 @@ public class ProcedureCall extends Expression
         {
             e.printStackTrace();
         }
-        return 0;
+        return child.getVariable(name);
     }
 }
