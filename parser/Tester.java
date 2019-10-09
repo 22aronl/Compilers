@@ -26,7 +26,7 @@ public class Tester
             Parser p = new Parser(sc);
             Environment e = new Environment();
             while(sc.hasNext())
-                p.parseStatement().exec(e);
+                p.parseProgram().exec(e);
             System.out.println("^^&&^^");
         }
     }

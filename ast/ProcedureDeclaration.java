@@ -22,6 +22,11 @@ public class ProcedureDeclaration extends Statement
     
     public void exec(Environment env)
     {
-        
+        env.setProcedure(name, this);
+    }
+    
+    public Statement getStatement()
+    {
+        return statement;
     }
 }

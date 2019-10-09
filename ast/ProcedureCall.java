@@ -9,20 +9,23 @@ import environment.*;
  */
 public class ProcedureCall extends Expression
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class ProcedureCall
-     */
-    public ProcedureCall()
+    private String name;
+    public ProcedureCall(String name)
     {
-        // initialise instance variables
-        x = 0;
+        this.name = name;
     }
-    
+
     public int eval(Environment env)
     {
-        return 1;
+        ProcedureDeclaration dec = env.getProcedure(name);
+        try
+        {
+            dec.getStatement().exec(env);
+        }
+        catch(SkipException e)
+        {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

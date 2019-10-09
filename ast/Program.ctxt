@@ -2,5 +2,5 @@
 comment0.params=dec\ stmt
 comment0.target=Program(java.util.List,\ Statement)
 comment1.params=env
-comment1.target=void\ exec(Environment)
+comment1.target=void\ exec(environment.Environment)
 numComments=2

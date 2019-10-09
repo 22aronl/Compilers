@@ -1,16 +1,8 @@
+PROCEDURE id();
+	count := count + 3;
 BEGIN
-	x := 2;
-	y := x + 1;
-	x := x + y;
-	SUM := 3;
-	WRITELN(x);
-	FOR z := 3 DO x + 1 THEN
-	BEGIN
-	SUM := SUM + z;
-	IF SUM = 9 THEN CONTINUE;
-	ELSE
-		WRITELN(SUM);
-	END;
-	
+	count:= 2;
+	ignore := id();
+	WRITELN(count);
 END;
 .

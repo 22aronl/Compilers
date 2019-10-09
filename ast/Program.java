@@ -3,7 +3,7 @@ package ast;
 import environment.*;
 import java.util.*;
 /**
- * Write a description of class Program here.
+ * program
  * 
  * @author Aaron Lo
  * @version 10-7-19
@@ -17,8 +17,20 @@ public class Program extends Statement
         this.dec = dec;
         this.stmt = stmt;
     }
-    
+
     public void exec(Environment env)
     {
+        for(ProcedureDeclaration d : dec)
+            d.exec(env);
+            
+        try
+        {
+            stmt.exec(env);
+
+        }
+        catch(SkipException e)
+        {
+            e.printStackTrace();
+        }
     }
 }

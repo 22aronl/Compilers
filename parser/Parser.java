@@ -111,7 +111,14 @@ public class Parser
         {
             String a = currentToken;
             eat(currentToken);
-            return new Variable(a);
+            if(currentToken.equals("("))
+            {
+                eat(currentToken);
+                eat(")");
+                return new ProcedureCall(a+"()");
+            }
+            else
+                return new Variable(a);
         }
         else
         {
@@ -228,12 +235,13 @@ public class Parser
             eat("PROCEDURE");
             String name = currentToken + "()";
             eat(currentToken);
-            eat("()");
+            eat("(");
+            eat(")");
             eat(";");
             list.add(new ProcedureDeclaration(name, parseStatement()));
         }
-        eat(".");
         Statement stmt = parseStatement();
+        eat(".");
         return new Program(list, stmt);
     }
 
