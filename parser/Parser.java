@@ -114,8 +114,9 @@ public class Parser
             if(currentToken.equals("("))
             {
                 eat(currentToken);
+                ArrayList<Expression> list = parseMaybeParmExpressions();
                 eat(")");
-                return new ProcedureCall(a+"()");
+                return new ProcedureCall(a+"()", list);
             }
             else
                 return new Variable(a);
@@ -253,6 +254,19 @@ public class Parser
         {
             ar.add(new Variable(currentToken));
             eat(currentToken);
+            if(currentToken.equals(")"))
+                break;
+            eat(",");
+        }
+        return ar;
+    }
+    
+    public ArrayList<Expression> parseMaybeParmExpressions()
+    {
+        ArrayList<Expression> ar = new ArrayList<Expression>();
+        while(true)
+        {
+            ar.add(parseExpression());
             if(currentToken.equals(")"))
                 break;
             eat(",");

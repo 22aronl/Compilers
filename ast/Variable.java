@@ -19,6 +19,10 @@ public class Variable extends Expression
         this.name = name;
     }
     
+    public String getName()
+    {
+        return name;
+    }
     
     /**
      * Evalutates the expression

@@ -1,6 +1,7 @@
 package ast;
 
 import environment.*;
+import java.util.*;
 /**
  * ProcedureCall
  * 
@@ -10,8 +11,10 @@ import environment.*;
 public class ProcedureCall extends Expression
 {
     private String name;
-    public ProcedureCall(String name)
+    private ArrayList<Expression> list;
+    public ProcedureCall(String name, ArrayList<Expression> list)
     {
+        this.list = list;
         this.name = name;
     }
 
@@ -21,6 +24,12 @@ public class ProcedureCall extends Expression
         try
         {
             Environment child = new Environment(env);
+            ArrayList<Variable> varList = dec.getList();
+            for(int i = 0; i < varList.size(); i++)
+            {
+                Assignment a = new Assignment(varList.get(i).getName(), list.get(i));
+                a.exec(child);
+            }
             dec.getStatement().exec(child);
         }
         catch(SkipException e)

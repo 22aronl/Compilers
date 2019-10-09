@@ -1,8 +1,8 @@
-PROCEDURE id();
-	count := count + 3;
+PROCEDURE id(n);
+	WRITELN(n * n);
 BEGIN
 	count:= 2;
-	ignore := id();
+	ignore := id(count + 2);
 	WRITELN(count);
 END;
 .
