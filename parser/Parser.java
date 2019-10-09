@@ -236,13 +236,28 @@ public class Parser
             String name = currentToken + "()";
             eat(currentToken);
             eat("(");
+            ArrayList<Variable> listParam = parseMaybeParm();
             eat(")");
             eat(";");
-            list.add(new ProcedureDeclaration(name, parseStatement()));
+            list.add(new ProcedureDeclaration(name, parseStatement(), listParam));
         }
         Statement stmt = parseStatement();
         eat(".");
         return new Program(list, stmt);
+    }
+    
+    public ArrayList<Variable> parseMaybeParm()
+    {
+        ArrayList<Variable> ar = new ArrayList<Variable>();
+        while(true)
+        {
+            ar.add(new Variable(currentToken));
+            eat(currentToken);
+            if(currentToken.equals(")"))
+                break;
+            eat(",");
+        }
+        return ar;
     }
 
     /**

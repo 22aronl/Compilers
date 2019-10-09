@@ -2,7 +2,7 @@ package ast;
 
 import environment.*;
 /**
- * Write a description of class ProcedureCall here.
+ * ProcedureCall
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -20,7 +20,8 @@ public class ProcedureCall extends Expression
         ProcedureDeclaration dec = env.getProcedure(name);
         try
         {
-            dec.getStatement().exec(env);
+            Environment child = new Environment(env);
+            dec.getStatement().exec(child);
         }
         catch(SkipException e)
         {
