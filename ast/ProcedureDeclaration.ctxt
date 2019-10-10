@@ -1,11 +1,14 @@
 #BlueJ class context
 comment0.params=name\ stmt\ list
 comment0.target=ProcedureDeclaration(java.lang.String,\ Statement,\ java.util.ArrayList)
-comment0.text=\n\ Constructor\ for\ objects\ of\ class\ ProcedureDeclaration\n
+comment0.text=\n\ Constructor\ for\ objects\ of\ class\ ProcedureDeclaration\n\ @param\ name\ the\ name\ of\ the\ declaration\n\ @param\ stmt\ the\ stmt\ of\ the\ declaration\n\ @param\ list\ the\ list\ of\ the\ variables\n
 comment1.params=env
 comment1.target=void\ exec(environment.Environment)
+comment1.text=\n\ This\ executes\ the\ procedure\n\ @param\ env\ the\ environemtn\n
 comment2.params=
 comment2.target=Statement\ getStatement()
+comment2.text=\n\ this\ gets\ the\ statement\n\ @return\ the\ statement\n
 comment3.params=
 comment3.target=java.util.ArrayList\ getList()
+comment3.text=\n\ This\ gets\ the\ list\ of\ variables\n\ @return\ the\ list\ of\ variables\n
 numComments=4

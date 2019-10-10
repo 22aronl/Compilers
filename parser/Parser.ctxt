@@ -7,10 +7,13 @@ comment1.target=void\ eat(java.lang.String)
 comment1.text=\n\ This\ eats\ the\ next\ token\ of\ scanner\n\ @param\ s\ checks\ if\ it\ is\ equals\n\ @throws\ IllegalArgumentException\ if\ teh\ current\ token\ \!\=\ s\n
 comment10.params=
 comment10.target=ast.Program\ parseProgram()
+comment10.text=\n\ Parses\ the\ program\n\ @return\ the\ program\ with\ procedures\ and\ a\ main\ statemnet\n
 comment11.params=
 comment11.target=java.util.ArrayList\ parseMaybeParm()
+comment11.text=\n\ Parses\ the\ potential\ variables\n\ @return\ an\ arraylist\ of\ the\ potential\ variables\n
 comment12.params=
 comment12.target=java.util.ArrayList\ parseMaybeParmExpressions()
+comment12.text=\n\ Parses\ the\ potentiall\ expression\ in\ the\ parameters\n\ @return\ an\ arraylist\ of\ expressions\ for\ the\ paramenters\n
 comment13.params=
 comment13.target=ast.Statement\ parseStatement()
 comment13.text=\n\ This\ parses\ statements\n\ stmt\ ->\ writel(expr)\ |\ Begin\ stmts\ End\n\ stmts\ ->\ stmts\ stmt\ |\ e\n\ @return\ the\ statement\n

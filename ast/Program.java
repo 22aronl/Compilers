@@ -12,12 +12,21 @@ public class Program extends Statement
 {
     private List<ProcedureDeclaration> dec;
     private Statement stmt;
+    /**
+     * This contructs the program
+     * @param dec the list of declarations
+     * @param stmt the main method
+     */
     public Program(List<ProcedureDeclaration> dec, Statement stmt)
     {
         this.dec = dec;
         this.stmt = stmt;
     }
 
+    /**
+     * this executes the program
+     * @param env the environmetn
+     */
     public void exec(Environment env)
     {
         for(ProcedureDeclaration d : dec)

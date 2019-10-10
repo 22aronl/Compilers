@@ -230,6 +230,10 @@ public class Parser
         return new Assignment(temp, e);
     }
 
+    /**
+     * Parses the program
+     * @return the program with procedures and a main statemnet
+     */
     public Program parseProgram()
     {
         List<ProcedureDeclaration> list = new ArrayList<ProcedureDeclaration>();
@@ -251,6 +255,10 @@ public class Parser
         return new Program(list, stmt);
     }
     
+    /**
+     * Parses the potential variables
+     * @return an arraylist of the potential variables
+     */
     public ArrayList<Variable> parseMaybeParm()
     {
         ArrayList<Variable> ar = new ArrayList<Variable>();
@@ -265,11 +273,15 @@ public class Parser
         return ar;
     }
     
+    /**
+     * Parses the potentiall expression in the parameters
+     * @return an arraylist of expressions for the paramenters
+     */
     public ArrayList<Expression> parseMaybeParmExpressions()
     {
         ArrayList<Expression> ar = new ArrayList<Expression>();
         while(true)
-        {
+        { 
             ar.add(parseExpression());
             if(currentToken.equals(")"))
                 break;

@@ -5,19 +5,30 @@ import java.util.*;
 /**
  * ProcedureCall
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Aaron Lo
+ * @version 10-9-19
  */
 public class ProcedureCall extends Expression
 {
     private String name;
     private ArrayList<Expression> list;
+    
+    /**
+     * Constructs procedure call
+     * @param name the name of the procedure
+     * @param list the arraylist of the parameters
+     */
     public ProcedureCall(String name, ArrayList<Expression> list)
     {
         this.list = list;
         this.name = name;
     }
 
+    /**
+     * This evalutates the procedure
+     * @param env the environment in which it operates
+     * @return if the thing has a return type
+     */
     public int eval(Environment env)
     {
         ProcedureDeclaration dec = env.getProcedure(name);
