@@ -26,7 +26,10 @@ public class Program extends Statement
         try
         {
             stmt.exec(env);
-
+        }
+        catch(BreakException e)
+        {
+            e.printStackTrace();
         }
         catch(SkipException e)
         {

@@ -1,8 +1,11 @@
-PROCEDURE id(n);
-	WRITELN(n * n);
+PROCEDURE max(n);
+BEGIN
+	max := n * 10;
+	IF max = 20 THEN BREAK;
+	WRITELN(50);
+END;
 BEGIN
 	count:= 2;
-	ignore := id(count + 2);
-	WRITELN(count);
+	WRITELN(max(count));
 END;
 .

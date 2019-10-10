@@ -24,10 +24,13 @@ public class ProcedureCall extends Expression
         Environment child = new Environment(env);
         try
         {
-            ArrayList<Variable> varList = dec.getList();
-            for(int i = 0; i < varList.size(); i++)
+            if(list != null)
             {
-                child.declareVariable(varList.get(i).getName(), list.get(i).eval(child));
+                ArrayList<Variable> varList = dec.getList();
+                for(int i = 0; i < varList.size(); i++)
+                {
+                    child.declareVariable(varList.get(i).getName(), list.get(i).eval(child));
+                }
             }
             dec.getStatement().exec(child);
         }

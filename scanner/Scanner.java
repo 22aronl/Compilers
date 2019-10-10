@@ -280,7 +280,8 @@ public class Scanner
         String a = String.valueOf(unknown);
         return a.equals("=") || a.equals("+") || a.equals("-") || a.equals("*")
             || a.equals("/") || a.equals("%") || a.equals("(") || a.equals(")")
-            || a.equals("<") || a.equals(">") || a.equals(":") || a.equals(";");
+            || a.equals("<") || a.equals(">") || a.equals(":") || a.equals(";")
+            || a.equals(",");
     }
 
     /**
