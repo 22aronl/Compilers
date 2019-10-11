@@ -20,7 +20,7 @@ public class Tester
      */
     public static void main(String[] args) throws IOException, SkipException
     {
-        for(int i = 7; i < 9; i++)
+        for(int i = 6; i < 9; i++)
         {
             Scanner sc = new Scanner(new FileInputStream("parser/parserTest" + i +".txt"));
             Parser p = new Parser(sc);
