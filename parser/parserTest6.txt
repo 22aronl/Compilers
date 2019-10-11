@@ -11,6 +11,7 @@ BEGIN
 	x := 0;
 	WHILE x < 10 DO
 	BEGIN
+	IF x = 4 THEN BREAK;
 		WRITELN(x);
 		x := x + 1;
 	END;

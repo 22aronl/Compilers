@@ -45,6 +45,10 @@ public class ProcedureCall extends Expression
             }
             dec.getStatement().exec(child);
         }
+        catch(BreakException e)
+        {
+            e.printStackTrace();
+        }
         catch(SkipException e)
         {
             e.printStackTrace();
