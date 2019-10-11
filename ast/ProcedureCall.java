@@ -47,11 +47,11 @@ public class ProcedureCall extends Expression
         }
         catch(BreakException e)
         {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         catch(SkipException e)
         {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return child.getVariable(name);
     }
