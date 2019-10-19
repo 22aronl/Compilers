@@ -3,7 +3,6 @@ BEGIN
 	WRITELN(y);
 	WRITELN(w);
 	WRITELN(z);
-	IF y = 4 THEN CONTINUE;
 	x := x + y;
 END;
 
