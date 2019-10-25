@@ -39,12 +39,30 @@ public class Environment
      * @param variable the string
      * @param value the value
      */
+    public boolean setVariableHelper(String variable, int value)
+    {
+        if(varMap.containsKey(variable))
+        {
+            varMap.put(variable, value);
+            return true;
+        }
+        else if(parent == null)
+        {
+            return false;
+        }
+        else
+            return parent.setVariableHelper(variable, value);
+    }
+    
+    /**
+     * Sets the variable
+     * @param variable the string
+     * @param value the value
+     */
     public void setVariable(String variable, int value)
     {
-        if(varMap.containsKey(variable) || parent == null)
+        if(!setVariableHelper(variable, value))
             varMap.put(variable, value);
-        else
-            parent.setVariable(variable, value);
     }
     
     /**

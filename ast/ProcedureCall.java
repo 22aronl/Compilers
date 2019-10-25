@@ -40,7 +40,7 @@ public class ProcedureCall extends Expression
                 ArrayList<Variable> varList = dec.getList();
                 for(int i = 0; i < varList.size(); i++)
                 {
-                    child.declareVariable(varList.get(i).getName(), list.get(i).eval(child));
+                    child.declareVariable(varList.get(i).getName(), list.get(i).eval(env));
                 }
             }
             dec.getStatement().exec(child);
