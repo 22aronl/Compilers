@@ -1,0 +1,4 @@
+.text
+.globl main
+main:
+	la $a0, .ascii "Hello"

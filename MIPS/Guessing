@@ -1,0 +1,17 @@
+.data
+	messages: .asciiz "Enter in a Number"
+.text
+.globl main
+
+main:
+	#la $a0, messages
+	li $v0, 4
+	syscall
+	li $v0, 5
+	syscall
+	li $v0, $a0
+	li $v0, 1
+	syscall
+	
+
+

@@ -1,0 +1,24 @@
+# It will print out numbers 0 to 10
+#@author Aaron Lo
+#@version 10-24-19
+.text
+.globl main
+main: 
+	li $t3, -1
+	j loop # loops the system
+loop:
+	addu $a0, $t3, 1
+	addu $t3, $t3, 1
+	li $v0, 1
+	syscall #prints out the number
+	la $a0, new
+	li $v0, 4
+	syscall
+	blt $t3, 10, loop #loops back to the tart
+	j end #goes to the end
+end:
+	li $v0, 10
+	syscall #ends the system
+.data
+	new:
+		.asciiz "\n"

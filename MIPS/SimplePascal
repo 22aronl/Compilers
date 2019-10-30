@@ -1,0 +1,13 @@
+.text
+.globl main
+main:
+	li $t1, 6
+	li $t2, 8
+	li $t3, 2
+	mult $t1, $t2
+	mflo $t0
+	div $t0, $t3
+	mflo $t0
+	addu $a0, $t0, 3
+	li $v0, 1
+	syscall

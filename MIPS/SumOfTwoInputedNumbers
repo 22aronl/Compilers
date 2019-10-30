@@ -1,0 +1,30 @@
+# This asks for two numbers and will print out the sum of the numbers
+#@author Aaron Lo
+#@version 10-24-19
+.text
+.globl main
+main: 
+	la $a0, ask
+	li $v0, 4
+	syscall
+	li $v0, 5
+	syscall 
+	move $t0, $v0 #asks for number one and loads it into $t0
+	li $v0, 5
+	syscall
+	move $t1, $v0 #asks for number two and loads it into $t1
+	la $a0, return
+	li $v0, 4
+	syscall
+	addu $a0, $t0, $t1 #adds the two numbers up
+	li $v0, 1
+	syscall # prints out the sum
+	
+	li $v0, 10
+	syscall #ends the system
+	
+.data
+	ask:
+		.asciiz "Input two numbers: "
+	return:
+		.asciiz "the Sum is "

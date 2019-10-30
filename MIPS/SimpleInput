@@ -1,0 +1,65 @@
+# This asks for two numbers and will print out the sum of the numbers and then the greater number. Then it will print out numbers 0 to 10
+#@author Aaron Lo
+#@version 10-24-19
+.text
+.globl main
+main: 
+	li $v0, 5
+	syscall 
+	move $t0, $v0 #asks for number one and loads it into $t0
+	li $v0, 5
+	syscall
+	move $t1, $v0 #asks for number two and loads it into $t1
+	addu $a0, $t0, $t1 #adds the two numbers up
+	li $v0, 1
+	syscall # prints out the sum
+	
+	la $a0, new # prints out a new line
+	li $v0, 4
+	syscall
+	
+	blt $t0, $t1, greater #checks which one is greater
+	move $a0, $t0 # loads the greater #t0 into $a0
+	j after
+	
+	
+	
+
+	
+greater:
+	move $a0, $t1 #loads the greater $t1 to $a0
+	j after
+	
+after:
+	li $v0, 1
+	syscall #prints out the greater number
+	la $a0, news 
+	li $v0, 4
+	syscall	#prints out new line
+	
+	li $t3, -1
+	j loop # loops the system
+	
+
+
+loop:
+	addu $a0, $t3, 1
+	addu $t3, $t3, 1
+	li $v0, 1
+	syscall #prints out the number
+	blt $t3, 10, loop #loops back to the tart
+	j end #goes to the end
+end:
+	lw $a0, ($t3)
+	li $v0, 1
+	syscall
+	li $v0, 10
+	syscall #ends the system
+	
+	
+
+.data
+	new:
+		.asciiz "\n\n"
+	news:
+		.asciiz"\n"
