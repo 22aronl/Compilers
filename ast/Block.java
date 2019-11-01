@@ -2,6 +2,7 @@ package ast;
 
 import java.util.*;
 import environment.*;
+import emitter.*;
 
 /**
  * Block
@@ -19,6 +20,14 @@ public class Block extends Statement
     public Block(ArrayList<Statement> statements)
     {
         this.statements = statements;
+    }
+    
+    public void compile(Emitter e)
+    {
+        for(Statement s: statements)
+        {
+            s.compile(e);
+        }
     }
     
     /**

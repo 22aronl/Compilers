@@ -1,6 +1,7 @@
 package ast;
 
 import environment.*;
+import emitter.*;
 /**
  * Abstract class Expression an Expression
  * 
@@ -15,4 +16,9 @@ public abstract class Expression
      * @return the evaluated number
      */
     public abstract int eval(Environment env);
+    
+    public void compile(Emitter e)
+    {
+        throw new RuntimeException("Implement me!!!");
+    }
 }

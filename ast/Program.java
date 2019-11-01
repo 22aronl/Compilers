@@ -1,7 +1,10 @@
 package ast;
 
+import emitter.*;
 import environment.*;
+import parser.*;
 import java.util.*;
+import java.io.*;
 /**
  * program
  * 
@@ -21,6 +24,31 @@ public class Program extends Statement
     {
         this.dec = dec;
         this.stmt = stmt;
+        compile("test.txt");
+    }
+
+    public void compile(String fileName)
+    {
+        Emitter e = new Emitter(fileName);
+        e.emit(".data");
+        e.emit("newLine:\t.asciiz \"\\n\"");
+        e.emit(".text");
+        e.emit(".globl main");
+        e.emit("main:");
+
+        try
+        {
+            scanner.Scanner sc = new scanner.Scanner(new FileInputStream("tester.txt"));
+            Parser p = new Parser(sc);
+            Statement s = p.parseStatement();
+            s.compile(e);
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        e.emit("li $v0 10");
+        e.emit("syscall");
     }
 
     /**
@@ -31,7 +59,7 @@ public class Program extends Statement
     {
         for(ProcedureDeclaration d : dec)
             d.exec(env);
-            
+
         try
         {
             stmt.exec(env);
