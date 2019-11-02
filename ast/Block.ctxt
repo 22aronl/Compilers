@@ -2,7 +2,9 @@
 comment0.params=statements
 comment0.target=Block(java.util.ArrayList)
 comment0.text=\n\ Constructor\ for\ objects\ of\ class\ Block\n\ @param\ statements\ the\ statements\n
-comment1.params=env
-comment1.target=void\ exec(environment.Environment)
-comment1.text=\n\ Exectues\ the\ code\n\ @param\ env\ the\ environment\n
-numComments=2
+comment1.params=e
+comment1.target=void\ compile(emitter.Emitter)
+comment2.params=env
+comment2.target=void\ exec(environment.Environment)
+comment2.text=\n\ Exectues\ the\ code\n\ @param\ env\ the\ environment\n
+numComments=3

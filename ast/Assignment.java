@@ -1,6 +1,7 @@
 package ast;
 
 import environment.*;
+import emitter.*;
 /**
  * Assingment
  * 
@@ -30,6 +31,12 @@ public class Assignment extends Statement
     public void exec(Environment env)
     {
         env.setVariable(var, exp.eval(env));
+    }
+    
+    public void compile(Emitter e)
+    {
+        exp.compile(e);
+        e.emit("sw $v0, var" + var);
     }
     
     /**

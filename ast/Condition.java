@@ -1,6 +1,7 @@
 package ast;
 
 import environment.*;
+import emitter.*;
 /**
  * The condition
  * 
@@ -24,6 +25,26 @@ public class Condition extends Expression
         this.op = op;
         this.exp1 = exp1;
         this.exp2 = exp2;
+    }
+
+    public void compile(Emitter e, String targetLabel)
+    {
+        exp1.compile(e);
+        e.emit("move $t0, $v0");
+        exp2.compile(e);
+        e.emit("move $t1, $v0");
+        if(op.equals("<>"))
+            e.emit("beq $t0, $t1, " + targetLabel);
+        else if(op.equals("="))
+            e.emit("bne $t0, $t1, " + targetLabel);
+        else if(op.equals("<"))
+            e.emit("bge $t0, $t1, " + targetLabel);
+        else if(op.equals(">"))
+            e.emit("ble $t0, $t1, " + targetLabel);
+        else if(op.equals("<="))
+            e.emit("bgt $t0, $t1, " + targetLabel);
+        else
+            e.emit("blt $t0, $t1, " + targetLabel);
     }
 
     /**

@@ -1,6 +1,7 @@
 package ast;
 
 import environment.*;
+import emitter.*;
 /**
  * The Number
  * 
@@ -27,5 +28,10 @@ public class Number extends Expression
     public int eval(Environment env)
     {
         return value;
+    }
+    
+    public void compile(Emitter e)
+    {
+        e.emit("li $v0, " + value);
     }
 }

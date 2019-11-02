@@ -1,7 +1,10 @@
 package ast;
 
+import emitter.*;
 import environment.*;
+import parser.*;
 import java.util.*;
+import java.io.*;
 /**
  * program
  * 
@@ -10,6 +13,7 @@ import java.util.*;
  */
 public class Program extends Statement
 {
+    private List<String> stringList;
     private List<ProcedureDeclaration> dec;
     private Statement stmt;
     /**
@@ -17,10 +21,31 @@ public class Program extends Statement
      * @param dec the list of declarations
      * @param stmt the main method
      */
-    public Program(List<ProcedureDeclaration> dec, Statement stmt)
+    public Program(List<String> stringList, List<ProcedureDeclaration> dec, Statement stmt)
     {
         this.dec = dec;
         this.stmt = stmt;
+        this.stringList = stringList;
+    }
+
+    public void compile(String fileName)
+    {
+        Emitter e = new Emitter(fileName);
+        e.emit(".data");
+        e.emit("newLine:\t.asciiz \"\\n\"");
+        for(String s: stringList)
+        {
+            e.emit("var" + s + ":\t.word\t" + 0);
+        }
+
+        e.emit(".text");
+        e.emit(".globl main");
+        e.emit("main:");
+
+        stmt.compile(e);
+
+        e.emit("li $v0 10");
+        e.emit("syscall");
     }
 
     /**
@@ -31,7 +56,7 @@ public class Program extends Statement
     {
         for(ProcedureDeclaration d : dec)
             d.exec(env);
-            
+
         try
         {
             stmt.exec(env);

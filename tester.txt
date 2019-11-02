@@ -1,0 +1,37 @@
+VAR c, x, y, z;
+
+BEGIN
+c := 1;
+x := 1;
+y := 1;
+WHILE c < 20 DO
+BEGIN
+z := x;
+WHILE x < y DO
+BEGIN
+y := y + 1;
+x := 2 * x;
+END;
+y := x;
+x := z;
+
+IF c + x >= y THEN
+BEGIN
+WRITELN(c + x - y);
+y := y + 1;
+END;
+
+END;
+
+IF x <> y THEN WRITELN(x + y);
+
+WHILE x < y DO
+BEGIN
+WRITELN( x * y);
+x := x + y / 20 + 1;
+END;
+
+IF x > y THEN WRITELN(11221);
+
+END;
+.

@@ -1,6 +1,7 @@
 package ast;
 
 import environment.*;
+import emitter.*;
 /**
  * While Loop
  * 
@@ -21,6 +22,16 @@ public class While extends Statement
     {
         this.condition = condition;
         this.statement = statement;
+    }
+    
+    public void compile(Emitter e)
+    {
+        int k = e.nextWhileLabelID();
+        e.emit("startWhile" + k + ":");
+        condition.compile(e, "endWhile" + k );
+        statement.compile(e);
+        e.emit("j startWhile" + k);
+        e.emit("endWhile" + k + ":");
     }
 
     /**

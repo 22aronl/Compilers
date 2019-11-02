@@ -1,6 +1,7 @@
 package ast;
 
 import environment.*;
+import emitter.*;
 /**
  * Variable
  * 
@@ -26,6 +27,12 @@ public class Variable extends Expression
     public String getName()
     {
         return name;
+    }
+    
+    public void compile(Emitter e)
+    {
+        e.emit("la $t0, var" + name);
+        e.emit("lw $v0, ($t0)");
     }
     
     /**

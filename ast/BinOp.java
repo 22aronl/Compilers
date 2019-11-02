@@ -1,6 +1,7 @@
 package ast;
 
 import environment.*;
+import emitter.*;
 /**
  * Bin Op
  * 
@@ -24,6 +25,26 @@ public class BinOp extends Expression
         this.op = op;
         this.exp1 = exp1;
         this.exp2 = exp2;
+    }
+    
+    public void compile(Emitter e)
+    {
+        exp1.compile(e);
+        e.emitPush("");
+        exp2.compile(e);
+        e.emitPop("");
+        if(op.equals("+"))
+            e.emit("addu $v0, $v0, $t0");
+        else if(op.equals("-"))
+            e.emit("subu $v0, $v0, $t0");
+        else
+        {
+            if(op.equals("*"))
+                e.emit("mult $v0, $t0");
+            else
+                e.emit("div $t0, $v0");
+            e.emit("mflo $v0");
+        }
     }
     
     /**
