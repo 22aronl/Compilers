@@ -42,7 +42,7 @@ public class BinOp extends Expression
             if(op.equals("*"))
                 e.emit("mult $v0, $t0");
             else
-                e.emit("div $v0, $t0");
+                e.emit("div $t0, $v0");
             e.emit("mflo $v0");
         }
     }

@@ -13,6 +13,7 @@ import java.io.*;
  */
 public class Program extends Statement
 {
+    private List<String> stringList;
     private List<ProcedureDeclaration> dec;
     private Statement stmt;
     /**
@@ -20,11 +21,11 @@ public class Program extends Statement
      * @param dec the list of declarations
      * @param stmt the main method
      */
-    public Program(List<ProcedureDeclaration> dec, Statement stmt)
+    public Program(List<String> stringList, List<ProcedureDeclaration> dec, Statement stmt)
     {
         this.dec = dec;
         this.stmt = stmt;
-        compile("test.txt");
+        this.stringList = stringList;
     }
 
     public void compile(String fileName)
@@ -32,21 +33,17 @@ public class Program extends Statement
         Emitter e = new Emitter(fileName);
         e.emit(".data");
         e.emit("newLine:\t.asciiz \"\\n\"");
+        for(String s: stringList)
+        {
+            e.emit("var" + s + ":\t.word\t" + 0);
+        }
+
         e.emit(".text");
         e.emit(".globl main");
         e.emit("main:");
 
-        try
-        {
-            scanner.Scanner sc = new scanner.Scanner(new FileInputStream("tester.txt"));
-            Parser p = new Parser(sc);
-            Statement s = p.parseStatement();
-            s.compile(e);
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-        }
+        stmt.compile(e);
+
         e.emit("li $v0 10");
         e.emit("syscall");
     }

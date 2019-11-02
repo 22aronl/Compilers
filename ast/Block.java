@@ -22,6 +22,7 @@ public class Block extends Statement
         this.statements = statements;
     }
     
+    @Override
     public void compile(Emitter e)
     {
         for(Statement s: statements)

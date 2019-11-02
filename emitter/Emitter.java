@@ -5,6 +5,8 @@ import java.io.*;
 public class Emitter
 {
     private PrintWriter out;
+    private int nextIf;
+    private int nextWhile;
 
     //creates an emitter for writing to a new file with given name
     public Emitter(String outputFileName)
@@ -17,6 +19,16 @@ public class Emitter
         {
             throw new RuntimeException(e);
         }
+    }
+    
+    public int nextLabelID()
+    {
+        return ++nextIf;
+    }
+    
+    public int nextWhileLabelID()
+    {
+        return ++nextWhile;
     }
 
     //prints one line of code to file (with non-labels indented)

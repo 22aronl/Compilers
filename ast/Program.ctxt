@@ -1,6 +1,6 @@
 #BlueJ class context
-comment0.params=dec\ stmt
-comment0.target=Program(java.util.List,\ Statement)
+comment0.params=stringList\ dec\ stmt
+comment0.target=Program(java.util.List,\ java.util.List,\ Statement)
 comment0.text=\n\ This\ contructs\ the\ program\n\ @param\ dec\ the\ list\ of\ declarations\n\ @param\ stmt\ the\ main\ method\n
 comment1.params=fileName
 comment1.target=void\ compile(java.lang.String)

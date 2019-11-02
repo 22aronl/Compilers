@@ -1,19 +1,124 @@
 	.data
 	newLine:	.asciiz "\n"
+	varc:	.word	0
+	varx:	.word	0
+	vary:	.word	0
+	varz:	.word	0
 	.text
 	.globl main
 main:
-	li $v0, -1
+	li $v0, 1
+	sw $v0, varc
+	li $v0, 1
+	sw $v0, varx
+	li $v0, 1
+	sw $v0, vary
+startWhile1:
+	la $t0, varc
+	lw $v0, ($t0)
+	move $t0, $v0
+	li $v0, 20
+	move $t1, $v0
+	bge $t0, $t1, endWhile1
+	la $t0, varx
+	lw $v0, ($t0)
+	sw $v0, varz
+startWhile2:
+	la $t0, varx
+	lw $v0, ($t0)
+	move $t0, $v0
+	la $t0, vary
+	lw $v0, ($t0)
+	move $t1, $v0
+	bge $t0, $t1, endWhile2
+	la $t0, vary
+	lw $v0, ($t0)
 	subu $sp, $sp, 4
 	sw $v0, ($sp)
-	li $v0, 3
+	li $v0, 1
+	lw $t0, ($sp)
+	addu $sp, $sp, 4
+	addu $v0, $v0, $t0
+	sw $v0, vary
+	li $v0, 2
+	subu $sp, $sp, 4
+	sw $v0, ($sp)
+	la $t0, varx
+	lw $v0, ($t0)
 	lw $t0, ($sp)
 	addu $sp, $sp, 4
 	mult $v0, $t0
 	mflo $v0
+	sw $v0, varx
+	j startWhile2
+endWhile2:
+	la $t0, varx
+	lw $v0, ($t0)
+	sw $v0, vary
+	la $t0, varz
+	lw $v0, ($t0)
+	sw $v0, varx
+	la $t0, varc
+	lw $v0, ($t0)
 	subu $sp, $sp, 4
 	sw $v0, ($sp)
-	li $v0, 11
+	la $t0, varx
+	lw $v0, ($t0)
+	lw $t0, ($sp)
+	addu $sp, $sp, 4
+	addu $v0, $v0, $t0
+	move $t0, $v0
+	la $t0, vary
+	lw $v0, ($t0)
+	move $t1, $v0
+	blt $t0, $t1, endif1
+	la $t0, varc
+	lw $v0, ($t0)
+	subu $sp, $sp, 4
+	sw $v0, ($sp)
+	la $t0, varx
+	lw $v0, ($t0)
+	lw $t0, ($sp)
+	addu $sp, $sp, 4
+	addu $v0, $v0, $t0
+	subu $sp, $sp, 4
+	sw $v0, ($sp)
+	la $t0, vary
+	lw $v0, ($t0)
+	lw $t0, ($sp)
+	addu $sp, $sp, 4
+	subu $v0, $v0, $t0
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	la $a0, newLine
+	li $v0, 4
+	syscall
+	la $t0, vary
+	lw $v0, ($t0)
+	subu $sp, $sp, 4
+	sw $v0, ($sp)
+	li $v0, 1
+	lw $t0, ($sp)
+	addu $sp, $sp, 4
+	addu $v0, $v0, $t0
+	sw $v0, vary
+endif1:
+	j startWhile1
+endWhile1:
+	la $t0, varx
+	lw $v0, ($t0)
+	move $t0, $v0
+	la $t0, vary
+	lw $v0, ($t0)
+	move $t1, $v0
+	beq $t0, $t1, endif2
+	la $t0, varx
+	lw $v0, ($t0)
+	subu $sp, $sp, 4
+	sw $v0, ($sp)
+	la $t0, vary
+	lw $v0, ($t0)
 	lw $t0, ($sp)
 	addu $sp, $sp, 4
 	addu $v0, $v0, $t0
@@ -23,13 +128,24 @@ main:
 	la $a0, newLine
 	li $v0, 4
 	syscall
-	li $v0, 16
+endif2:
+startWhile3:
+	la $t0, varx
+	lw $v0, ($t0)
+	move $t0, $v0
+	la $t0, vary
+	lw $v0, ($t0)
+	move $t1, $v0
+	bge $t0, $t1, endWhile3
+	la $t0, varx
+	lw $v0, ($t0)
 	subu $sp, $sp, 4
 	sw $v0, ($sp)
-	li $v0, 2
+	la $t0, vary
+	lw $v0, ($t0)
 	lw $t0, ($sp)
 	addu $sp, $sp, 4
-	div $v0, $t0
+	mult $v0, $t0
 	mflo $v0
 	move $a0, $v0
 	li $v0, 1
@@ -37,5 +153,45 @@ main:
 	la $a0, newLine
 	li $v0, 4
 	syscall
+	la $t0, varx
+	lw $v0, ($t0)
+	subu $sp, $sp, 4
+	sw $v0, ($sp)
+	la $t0, vary
+	lw $v0, ($t0)
+	subu $sp, $sp, 4
+	sw $v0, ($sp)
+	li $v0, 20
+	lw $t0, ($sp)
+	addu $sp, $sp, 4
+	div $t0, $v0
+	mflo $v0
+	lw $t0, ($sp)
+	addu $sp, $sp, 4
+	addu $v0, $v0, $t0
+	subu $sp, $sp, 4
+	sw $v0, ($sp)
+	li $v0, 1
+	lw $t0, ($sp)
+	addu $sp, $sp, 4
+	addu $v0, $v0, $t0
+	sw $v0, varx
+	j startWhile3
+endWhile3:
+	la $t0, varx
+	lw $v0, ($t0)
+	move $t0, $v0
+	la $t0, vary
+	lw $v0, ($t0)
+	move $t1, $v0
+	ble $t0, $t1, endif3
+	li $v0, 11221
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	la $a0, newLine
+	li $v0, 4
+	syscall
+endif3:
 	li $v0 10
 	syscall

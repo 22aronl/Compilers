@@ -236,6 +236,20 @@ public class Parser
      */
     public Program parseProgram()
     {
+        List<String> stringList = new ArrayList<String>();
+        while(currentToken.equals("VAR"))
+        {
+            eat("VAR");
+            stringList.add(currentToken);
+            eat(currentToken);
+            while(!currentToken.equals(";"))
+            {
+                eat(",");
+                stringList.add(currentToken);
+                eat(currentToken);
+            }
+            eat(";");
+        }
         List<ProcedureDeclaration> list = new ArrayList<ProcedureDeclaration>();
         while(currentToken.equals("PROCEDURE"))
         {
@@ -252,7 +266,7 @@ public class Parser
         }
         Statement stmt = parseStatement();
         eat(".");
-        return new Program(list, stmt);
+        return new Program(stringList, list, stmt);
     }
     
     /**

@@ -3,6 +3,7 @@ package parser;
 import java.io.FileInputStream;
 import java.io.IOException;
 import scanner.*;
+import emitter.*;
 import ast.*;
 import environment.*;
 
@@ -20,14 +21,13 @@ public class Tester
      */
     public static void main(String[] args) throws IOException, SkipException
     {
-        for(int i = 7; i < 9; i++)
+        for(int i = 3; i < 4; i++)
         {
-            Scanner sc = new Scanner(new FileInputStream("parser/parserTest" + i +".txt"));
+            Scanner sc = new Scanner(new FileInputStream("parser/parserTest9 ("+i+").txt"));
             Parser p = new Parser(sc);
-            Environment e = new Environment();
-            while(sc.hasNext())
-                p.parseProgram().exec(e);
-            System.out.println("^^& "+ i + " &^^");
+            Environment env = new Environment();
+            p.parseProgram().compile("codeGenTest"+i+".txt");
+            System.out.println("Test For"+ i + "  :)");
         }
     }
 }

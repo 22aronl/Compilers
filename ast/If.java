@@ -1,6 +1,7 @@
 package ast;
 
 import environment.*;
+import emitter.*;
 /**
  * The if statement
  * 
@@ -34,6 +35,14 @@ public class If extends Statement
         this.condition = con;
         this.exp1 = exp1;
         this.exp2 = exp2;
+    }
+
+    public void compile(Emitter e)
+    {
+        String cur = "endif"+ e.nextLabelID();
+        condition.compile(e, cur);
+        exp1.compile(e);
+        e.emit(cur + ":");
     }
 
     /**
