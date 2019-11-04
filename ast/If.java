@@ -37,6 +37,10 @@ public class If extends Statement
         this.exp2 = exp2;
     }
 
+    /**
+     * The if compiler
+     * @param e the emitter
+     */
     public void compile(Emitter e)
     {
         String cur = "endif"+ e.nextLabelID();

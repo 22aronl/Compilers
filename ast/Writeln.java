@@ -38,6 +38,10 @@ public class Writeln extends Statement
         System.out.println(exp.eval(env));
     }
     
+    /**
+     * The writeln compile
+     * @param e the emitter
+     */
     public void compile(Emitter e)
     {
         exp.compile(e);

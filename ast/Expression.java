@@ -17,6 +17,10 @@ public abstract class Expression
      */
     public abstract int eval(Environment env);
     
+    /**
+     * The compile method
+     * @param e the emitter
+     */
     public void compile(Emitter e)
     {
         throw new RuntimeException("Implement me!!!");

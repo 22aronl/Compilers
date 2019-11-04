@@ -29,6 +29,10 @@ public class Variable extends Expression
         return name;
     }
     
+    /**
+     * The compile for Variable
+     * @param e emitter 
+     */
     public void compile(Emitter e)
     {
         e.emit("la $t0, var" + name);

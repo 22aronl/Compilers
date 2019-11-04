@@ -7,6 +7,7 @@ comment1.target=If(Condition,\ Statement,\ Statement)
 comment1.text=\n\ The\ if\ statement\ with\ else\n\ @param\ con\ the\ condition\n\ @param\ exp1\ the\ statement\ for\ the\ if\n\ @param\ exp2\ called\ if\ con\ is\ false\n
 comment2.params=e
 comment2.target=void\ compile(emitter.Emitter)
+comment2.text=\n\ The\ if\ compiler\n\ @param\ e\ the\ emitter\n
 comment3.params=env
 comment3.target=void\ exec(environment.Environment)
 comment3.text=\n\ Runs\ the\ if\ statemnt\n\ @param\ env\ the\ environment\n\ @throws\ SkipException\ the\ skip\ exception\n

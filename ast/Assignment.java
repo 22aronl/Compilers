@@ -33,6 +33,10 @@ public class Assignment extends Statement
         env.setVariable(var, exp.eval(env));
     }
     
+    /**
+     * Compiles to code the mips file
+     * @param e the emitter used for compiling
+     */
     public void compile(Emitter e)
     {
         exp.compile(e);

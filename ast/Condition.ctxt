@@ -4,6 +4,7 @@ comment0.target=Condition(java.lang.String,\ Expression,\ Expression)
 comment0.text=\n\ Constructor\ for\ objects\ of\ class\ Condition\n\ @param\ op\ the\ operator\n\ @param\ exp1\ the\ expression\ 1\ on\ the\ left\n\ @param\ exp2\ the\ expression\ 2\ on\ the\ right\n
 comment1.params=e\ targetLabel
 comment1.target=void\ compile(emitter.Emitter,\ java.lang.String)
+comment1.text=\n\ This\ compiles\ a\ condiiton\ and\ will\ move\ the\ condition\ to\ jump\ towards\ target\ label\n\ @param\ e\ the\ emitter\n\ @param\ targetLabel\ the\ table\ that\ is\ the\ target\ to\ jumpt\ to\n
 comment2.params=env
 comment2.target=int\ eval(environment.Environment)
 comment2.text=\n\ Exectues\ the\ code\n\ @param\ env\ the\ environment\n\ @return\ 1\ if\ true;\ -1\ for\ false\n

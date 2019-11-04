@@ -4,4 +4,5 @@ comment0.target=void\ exec(environment.Environment)
 comment0.text=\n\ Exectues\ the\ code\n\ @param\ env\ the\ environment\n
 comment1.params=e
 comment1.target=void\ compile(emitter.Emitter)
+comment1.text=\n\ The\ compile\ method\ for\ statement\n\ @param\ e\ the\ emitter\n
 numComments=2

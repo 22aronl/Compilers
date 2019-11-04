@@ -27,6 +27,11 @@ public class Condition extends Expression
         this.exp2 = exp2;
     }
 
+    /**
+     * This compiles a condiiton and will move the condition to jump towards target label
+     * @param e the emitter
+     * @param targetLabel the table that is the target to jumpt to
+     */
     public void compile(Emitter e, String targetLabel)
     {
         exp1.compile(e);

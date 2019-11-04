@@ -16,6 +16,10 @@ public abstract class Statement
      */
     public abstract void exec(Environment env) throws SkipException;
     
+    /**
+     * The compile method for statement
+     * @param e the emitter
+     */
     public void compile(Emitter e)
     {
         throw new RuntimeException("Implement me!!!");

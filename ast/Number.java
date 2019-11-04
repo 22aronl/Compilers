@@ -30,6 +30,10 @@ public class Number extends Expression
         return value;
     }
     
+    /**
+     * Sets the compile
+     * @param e the emitter
+     */
     public void compile(Emitter e)
     {
         e.emit("li $v0, " + value);

@@ -20,6 +20,7 @@ public class Program extends Statement
      * This contructs the program
      * @param dec the list of declarations
      * @param stmt the main method
+     * @param stringList the list of string variables
      */
     public Program(List<String> stringList, List<ProcedureDeclaration> dec, Statement stmt)
     {
@@ -28,6 +29,10 @@ public class Program extends Statement
         this.stringList = stringList;
     }
 
+    /**
+     * The compile method for hte program
+     * @param fileName the directed filename
+     */
     public void compile(String fileName)
     {
         Emitter e = new Emitter(fileName);

@@ -4,4 +4,5 @@ comment0.target=int\ eval(environment.Environment)
 comment0.text=\n\ Evalutates\ the\ expression\n\ @param\ env\ the\ environemtn\n\ @return\ the\ evaluated\ number\n
 comment1.params=e
 comment1.target=void\ compile(emitter.Emitter)
+comment1.text=\n\ The\ compile\ method\n\ @param\ e\ the\ emitter\n
 numComments=2

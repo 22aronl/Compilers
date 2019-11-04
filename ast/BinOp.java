@@ -27,6 +27,10 @@ public class BinOp extends Expression
         this.exp2 = exp2;
     }
     
+    /**
+     * Compiles the binOp into mips file
+     * @param e the emitter used for mips
+     */
     public void compile(Emitter e)
     {
         exp1.compile(e);

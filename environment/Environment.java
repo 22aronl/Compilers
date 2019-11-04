@@ -38,6 +38,7 @@ public class Environment
      * Sets the variable
      * @param variable the string
      * @param value the value
+     * @return true if can set, otherwise false
      */
     public boolean setVariableHelper(String variable, int value)
     {

@@ -7,6 +7,7 @@ comment1.target=void\ exec(environment.Environment)
 comment1.text=\n\ Exectues\ the\ code\n\ @param\ env\ the\ environment\n
 comment2.params=e
 comment2.target=void\ compile(emitter.Emitter)
+comment2.text=\n\ Compiles\ to\ code\ the\ mips\ file\n\ @param\ e\ the\ emitter\ used\ for\ compiling\n
 comment3.params=
 comment3.target=java.lang.String\ getVariable()
 comment3.text=\n\ Gets\ the\ variable\ name\n\ @return\ the\ variable\ name\n

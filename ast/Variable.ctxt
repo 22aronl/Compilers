@@ -7,6 +7,7 @@ comment1.target=java.lang.String\ getName()
 comment1.text=\n\ This\ gets\ the\ name\n\ @return\ the\ name\n
 comment2.params=e
 comment2.target=void\ compile(emitter.Emitter)
+comment2.text=\n\ The\ compile\ for\ Variable\n\ @param\ e\ emitter\ \n
 comment3.params=env
 comment3.target=int\ eval(environment.Environment)
 comment3.text=\n\ Evalutates\ the\ expression\n\ @param\ env\ the\ environemtn\n\ @return\ the\ evaluated\ thing\n

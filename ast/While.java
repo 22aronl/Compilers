@@ -24,6 +24,10 @@ public class While extends Statement
         this.statement = statement;
     }
     
+    /**
+     * The compile for while
+     * @param e the emitter
+     */
     public void compile(Emitter e)
     {
         int k = e.nextWhileLabelID();
