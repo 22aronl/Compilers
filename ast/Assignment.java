@@ -35,6 +35,7 @@ public class Assignment extends Statement
     
     /**
      * Compiles to code the mips file
+     * Stores what was in $v0 into the the variable
      * @param e the emitter used for compiling
      */
     public void compile(Emitter e)

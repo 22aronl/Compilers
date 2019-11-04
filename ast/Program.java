@@ -31,6 +31,7 @@ public class Program extends Statement
 
     /**
      * The compile method for hte program
+     * The program has all things needed for a mips file 
      * @param fileName the directed filename
      */
     public void compile(String fileName)

@@ -32,6 +32,7 @@ public class Number extends Expression
     
     /**
      * Sets the compile
+     * Sets $v0 as the value
      * @param e the emitter
      */
     public void compile(Emitter e)

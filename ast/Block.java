@@ -22,6 +22,10 @@ public class Block extends Statement
         this.statements = statements;
     }
     
+    /**
+     * This compiles all statements in it
+     * @param e the emitter
+     */
     @Override
     public void compile(Emitter e)
     {

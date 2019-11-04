@@ -29,6 +29,7 @@ public class BinOp extends Expression
     
     /**
      * Compiles the binOp into mips file
+     * Stores value into $v0
      * @param e the emitter used for mips
      */
     public void compile(Emitter e)

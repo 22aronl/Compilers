@@ -26,7 +26,9 @@ public class Tester
             Scanner sc = new Scanner(new FileInputStream("parser/parserTest9 ("+i+").txt"));
             Parser p = new Parser(sc);
             Environment env = new Environment();
-            p.parseProgram().compile("codeGenTest"+i+".txt");
+            Program pro = p.parseProgram();
+            pro.compile("codeGenTest"+i+".txt");
+            pro.exec(env);
             System.out.println("Test For"+ i + "  :)");
         }
     }

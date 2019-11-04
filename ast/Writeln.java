@@ -40,6 +40,8 @@ public class Writeln extends Statement
     
     /**
      * The writeln compile
+     * This stores the value from $v0 into $a0 and prints it out
+     * Then it prints a new line
      * @param e the emitter
      */
     public void compile(Emitter e)

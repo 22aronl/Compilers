@@ -31,6 +31,7 @@ public class Variable extends Expression
     
     /**
      * The compile for Variable
+     * Stores the variable as $v0
      * @param e emitter 
      */
     public void compile(Emitter e)

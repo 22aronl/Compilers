@@ -1,4 +1,4 @@
-		.data
+	.data
 	newLine:	.asciiz "\n"
 	varx:	.word	0
 	vary:	.word	0

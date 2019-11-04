@@ -26,6 +26,7 @@ public class While extends Statement
     
     /**
      * The compile for while
+     * This will run stuff until condition fails
      * @param e the emitter
      */
     public void compile(Emitter e)

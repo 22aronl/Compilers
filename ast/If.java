@@ -39,6 +39,7 @@ public class If extends Statement
 
     /**
      * The if compiler
+     * if condition is valid this will run the exp1
      * @param e the emitter
      */
     public void compile(Emitter e)
