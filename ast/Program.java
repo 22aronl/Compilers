@@ -6,7 +6,7 @@ import parser.*;
 import java.util.*;
 import java.io.*;
 /**
- * program
+ * a program -> This  holds a list of variables. procedures and the statement
  * 
  * @author Aaron Lo
  * @version 10-7-19

@@ -3,7 +3,7 @@ package emitter;
 import java.io.*;
 
 /**
- * The class emitter
+ * The class emitter that prints statements to the given file name
  * @author Aaro NLo
  * @version 11-4-19
  */

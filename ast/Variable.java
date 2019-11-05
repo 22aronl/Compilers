@@ -3,7 +3,7 @@ package ast;
 import environment.*;
 import emitter.*;
 /**
- * Variable
+ * Variable name
  * 
  * @author Aaron Lo
  * @version 10-1-19

@@ -3,7 +3,7 @@ package ast;
 import environment.*;
 import emitter.*;
 /**
- * The condition
+ * The condition (A true and false expression)
  * 
  * @author Aaron Lo
  * @version 10-3-19

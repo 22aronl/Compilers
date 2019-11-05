@@ -3,7 +3,7 @@ package ast;
 import environment.*;
 import emitter.*;
 /**
- * The Number
+ * An expression that holds a number
  * 
  * @author Aaron Lo
  * @version 10 -1 -19

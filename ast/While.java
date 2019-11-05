@@ -4,6 +4,7 @@ import environment.*;
 import emitter.*;
 /**
  * While Loop
+ * This loops the statement until the given condition is false
  * 
  * @author AAron Lo
  * @version 10-3-19

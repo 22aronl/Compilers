@@ -188,7 +188,7 @@ public class Parser
     }
 
     /**
-     * Parses the condition
+     * Parses a condition
      * @return the condition
      */
     private Condition parseCondition()
@@ -200,8 +200,8 @@ public class Parser
     }
 
     /**
-     * This is a helper to parseStatement that parses things after begin
-     * @param ar the arraylist
+     * This is a helper to parseStatement that parses block statements
+     * @param ar the arraylist that contains the statement
      */
     private void parseWhileBegin(ArrayList<Statement> ar)
     {
@@ -231,7 +231,7 @@ public class Parser
     }
 
     /**
-     * Parses the program
+     * Parses the program with Var -> Procedure -> and the main statement
      * @return the program with procedures and a main statemnet
      */
     public Program parseProgram()
@@ -270,7 +270,7 @@ public class Parser
     }
     
     /**
-     * Parses the potential variables
+     * Parses the potential parameters of a procedure
      * @return an arraylist of the potential variables
      */
     public ArrayList<Variable> parseMaybeParm()
@@ -288,7 +288,7 @@ public class Parser
     }
     
     /**
-     * Parses the potentiall expression in the parameters
+     * Parses the potential expressions in the parameters and sticks it into an arraylist
      * @return an arraylist of expressions for the paramenters
      */
     public ArrayList<Expression> parseMaybeParmExpressions()

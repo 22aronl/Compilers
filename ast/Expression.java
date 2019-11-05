@@ -3,7 +3,7 @@ package ast;
 import environment.*;
 import emitter.*;
 /**
- * Abstract class Expression an Expression
+ * Abstract class Expression
  * 
  * @author Aaron Lo
  * @version 10-1-19

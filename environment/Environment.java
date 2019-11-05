@@ -3,7 +3,8 @@ package environment;
 import java.util.*;
 import ast.*;
 /**
- *Enviroment
+ * The Enviroment class for the interpreter- > This keeps track of different procedures
+ * and variables
  * 
  * @author Aaron Lo
  * @version 10-1-19

@@ -5,7 +5,7 @@ import environment.*;
 import emitter.*;
 
 /**
- * Block
+ *  A block of statements
  * 
  * @author Aaron Lo
  * @version 10-1-19

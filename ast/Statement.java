@@ -3,7 +3,7 @@ package ast;
 import environment.*;
 import emitter.*;
 /**
- * Abstract class Statement - statment
+ * Abstract class Statement -> 
  * 
  * @author Aaron Lo
  * @version 10- 1- 19

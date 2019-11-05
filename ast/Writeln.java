@@ -4,6 +4,8 @@ import environment.*;
 import emitter.*;
 /**
  * Writeln
+ * This prints out the expressing in it
+ * 
  * 
  * @author Aaron Lo
  * @version 10-1-19

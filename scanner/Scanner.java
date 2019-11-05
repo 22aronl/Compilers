@@ -3,7 +3,7 @@ package scanner;
 import java.io.*;
 
 /**
- * Scanner is a simple scanner for Compilers and Interpreters (2014-2015) lab exercise 1
+ * Scanner is a simple scanner for Compilers and Interpreters 
  * @author Aaron Lo
  * @version 9-5-19
  *  

@@ -4,6 +4,7 @@ import environment.*;
 import emitter.*;
 /**
  * The if statement
+ * If the condition is true, the statement is executed
  * 
  * @author Aaron Lo
  * @version 10-3-19

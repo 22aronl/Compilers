@@ -3,7 +3,7 @@ package ast;
 import environment.*;
 import emitter.*;
 /**
- * Assingment
+ * This assigns the exp into the variable
  * 
  * @author Aaron Lo
  * @version 10-1-19

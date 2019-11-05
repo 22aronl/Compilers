@@ -3,7 +3,7 @@ package ast;
 import environment.*;
 import emitter.*;
 /**
- * Bin Op
+ * Bin Op (Two Expression evaluated from +, - ,*, and /)
  * 
  * @author Aaron Lo
  * @version 10-1-19
