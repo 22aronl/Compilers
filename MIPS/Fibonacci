@@ -1,47 +1,69 @@
+# Fibonacci
+#@author Aaron Lo
+#@version 11-8-19
+.data 
+	message: .asciiz "Enter in the fibonacci number: "
+	mad: .asciiz "The fibonacci is "
 .text 
 .globl main
 
 main:
-	li $a0, 10
-	jal fact
-	move $a0, $v0
-	li $v0, 1
+	la $a0, message
+	li $v0, 4
 	syscall
-	li $v0, 10
+	li $v0, 5	#gets the number for fibonacci
+	syscall
+	move $a0, $v0
+	beq $a0, 0, n # basecase if the factorial is 0
+	jal fact #jumps the factorial recursion thingy
+final:
+	move $t0, $v0
+	la $a0, mad
+	li $v0, 4
+	syscall
+	move $v0, $t0
+	move $a0, $v0 #loads the return into $ao
+	li $v0, 1 #prints out
+	syscall
+	li $v0, 10 #EXITS
 	syscall
 	
 fact:
 	subu $sp, $sp, 4
-	sw $ra, ($sp)
+	sw $ra, ($sp) 	# stores ra
 	
-	ble $a0,1,end
+	ble $a0,1,end # basecase if number is less than equal to 1
 
 	subu $sp, $sp, 4
-	sw $a0, ($sp)
+	sw $a0, ($sp) # stores $a0
 	
-	subu $a0, $a0, 1
-	jal fact
+	subu $a0, $a0, 1 #subtracts one from $a0
+	jal fact #jumps back to fact
 	
 	lw $t1, ($sp)
-	addu $sp, $sp, 4
+	addu $sp, $sp, 4	#takes out a0
 	
 	subu $sp, $sp, 4
-	sw $v0, ($sp)
+	sw $v0, ($sp)	#stores $v0
 	
 	subu $a0, $t1, 2
-	jal fact
+	jal fact	# gest the next fact
 	
 	lw $t0, ($sp)
 	addu $sp, $sp, 4
-	addu $v0, $v0, $t0
+	addu $v0, $v0, $t0	#adds the fact together
 	lw $ra, ($sp)
 	addu $sp, $sp, 4
-	jr $ra
+	jr $ra	#jumps back
 	
 end:
-	lw $ra, ($sp)
-	addu $sp, $sp, 4
+	lw $ra, ($sp)	
+	addu $sp, $sp, 4 #gets the ra
 	move $v0, $a0
-	jr $ra
+	jr $ra	#jumps back
+	
+n:
+	li $v0, 1
+	j final #base case back
 	
 	

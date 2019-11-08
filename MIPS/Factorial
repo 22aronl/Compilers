@@ -1,11 +1,26 @@
+# Factorial finder
+#@author Aaron Lo
+#@version 11-8-19
+.data
+	message: .asciiz "Enter in the number factorial: "
+	mad: .asciiz "The factorial is "
 .text 
 .globl main
 
 main:
-	li $a0, 30
-	jal fact
-	move $a0, $v0
-	li $v0, 1
+	la $a0, message
+	li $v0, 4
+	syscall
+	li $v0, 5	#gets the number for factorial
+	syscall
+	move $t0, $v0
+	la $a0, mad
+	li $v0, 4
+	syscall
+	move $a0, $t0
+	jal fact	#jumps to factorial
+	move $a0, $v0 
+	li $v0, 1	#prints out hte factorial
 	syscall
 	li $v0, 10
 	syscall
@@ -13,23 +28,23 @@ main:
 fact:
 	subu $sp, $sp, 4
 	sw $ra, ($sp)
-	beq $a0,0,end
+	beq $a0,0,end	#basecase
 	subu $sp, $sp, 4
-	sw $a0, ($sp)
+	sw $a0, ($sp) 	#stores the argument into stack
 	subu $a0, $a0, 1
-	jal fact
-	lw $t0, ($sp)
+	jal fact	#recursive code
+	lw $t0, ($sp)	# loads stuff
 	addu $sp, $sp, 4
-	mult $v0, $t0
-	mflo $v0
-	lw $ra, ($sp)
+	mul $v0, $v0, $t0	#multiplies it out
+	#mflo $v0	#loads it into v0
+	lw $ra, ($sp) 	#
 	addu $sp, $sp, 4
-	jr $ra
+	jr $ra	#jumps back
 	
 end:
-	lw $ra, ($sp)
-	addu $sp, $sp, 4
-	li $v0, 1
-	jr $ra
+	lw $ra, ($sp) #gets ra
+	addu $sp, $sp, 4 
+	li $v0, 1	#
+	jr $ra 	#jumps away
 	
 	
