@@ -13,7 +13,7 @@ import java.io.*;
  */
 public class Program extends Statement
 {
-    private List<String> stringList;
+    private List<Assignment> stringList;
     private List<ProcedureDeclaration> dec;
     private Statement stmt;
     /**
@@ -22,7 +22,7 @@ public class Program extends Statement
      * @param stmt the main method
      * @param stringList the list of string variables
      */
-    public Program(List<String> stringList, List<ProcedureDeclaration> dec, Statement stmt)
+    public Program(List<Assignment> stringList, List<ProcedureDeclaration> dec, Statement stmt)
     {
         this.dec = dec;
         this.stmt = stmt;
@@ -39,9 +39,10 @@ public class Program extends Statement
         Emitter e = new Emitter(fileName);
         e.emit(".data");
         e.emit("newLine:\t.asciiz \"\\n\"");
-        for(String s: stringList)
+        for(Assignment s: stringList)
         {
-            e.emit("var" + s + ":\t.word\t" + 0);
+            int value = s.getExpression() == null ? 0 : ((Number)s.getExpression()).getValue();
+            e.emit("var" + s.getVariable() + ":\t.word\t" + value);
         }
 
         e.emit(".text");
@@ -60,6 +61,17 @@ public class Program extends Statement
      */
     public void exec(Environment env)
     {
+        for(Assignment a: stringList)
+        {
+            if(a.getExpression() == null)
+            {
+                a.setExpression(new Number(0));
+                a.exec(env);
+            }
+            else
+                a.exec(env);
+        }
+
         for(ProcedureDeclaration d : dec)
             d.exec(env);
 

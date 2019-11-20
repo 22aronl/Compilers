@@ -30,6 +30,11 @@ public class Number extends Expression
         return value;
     }
     
+    public int getValue()
+    {
+        return value;
+    }
+    
     /**
      * Sets the compile
      * Sets $v0 as the value

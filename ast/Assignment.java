@@ -24,6 +24,16 @@ public class Assignment extends Statement
         this.exp = exp;
     }
     
+    public Expression getExpression()
+    {
+        return exp;
+    }
+    
+    public void setExpression(Expression s)
+    {
+        exp= s;
+    }
+    
     /**
      * Exectues the code
      * @param env the environment

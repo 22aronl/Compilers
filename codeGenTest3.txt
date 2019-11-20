@@ -1,7 +1,7 @@
 	.data
 	newLine:	.asciiz "\n"
-	varx:	.word	0
-	vary:	.word	0
+	varx:	.word	10
+	vary:	.word	10
 	varcount:	.word	0
 	.text
 	.globl main
@@ -9,7 +9,7 @@ main:
 	li $v0, 2
 	sw $v0, varx
 	la $t0, varx
-	lw $v0, ($t0)
+	lw $v0, varx
 	subu $sp, $sp, 4
 	sw $v0, ($sp)
 	li $v0, 1

@@ -236,17 +236,31 @@ public class Parser
      */
     public Program parseProgram()
     {
-        List<String> stringList = new ArrayList<String>();
+        List<Assignment> stringList = new ArrayList<Assignment>();
         while(currentToken.equals("VAR"))
         {
             eat("VAR");
-            stringList.add(currentToken);
+            String s = currentToken;
+            ast.Number exp = null;
             eat(currentToken);
+            if(currentToken.equals(":="))
+            {
+                eat(currentToken);
+                exp = (ast.Number)parseNumber();
+            }
+            stringList.add(new Assignment(s, exp));
             while(!currentToken.equals(";"))
             {
                 eat(",");
-                stringList.add(currentToken);
+                String st = currentToken;
+                ast.Number exps = null;
                 eat(currentToken);
+                if(currentToken.equals(":="))
+                {
+                    eat(currentToken);
+                    exps = (ast.Number)parseNumber();
+                }
+                stringList.add(new Assignment(st, exps));
             }
             eat(";");
         }
@@ -268,7 +282,7 @@ public class Parser
         eat(".");
         return new Program(stringList, list, stmt);
     }
-    
+
     /**
      * Parses the potential parameters of a procedure
      * @return an arraylist of the potential variables
@@ -286,7 +300,7 @@ public class Parser
         }
         return ar;
     }
-    
+
     /**
      * Parses the potential expressions in the parameters and sticks it into an arraylist
      * @return an arraylist of expressions for the paramenters

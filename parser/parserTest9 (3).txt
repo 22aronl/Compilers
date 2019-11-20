@@ -1,5 +1,5 @@
-	VAR x;
-	VAR y, count;
+	VAR x:= 10;
+	VAR y:=10, count;
 BEGIN
 
 	x := 2;
