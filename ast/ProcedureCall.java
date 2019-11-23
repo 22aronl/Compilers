@@ -1,6 +1,7 @@
 package ast;
 
 import environment.*;
+import emitter.*;
 import java.util.*;
 /**
  * ProcedureCall
@@ -12,7 +13,7 @@ public class ProcedureCall extends Expression
 {
     private String name;
     private ArrayList<Expression> list;
-    
+
     /**
      * Constructs procedure call
      * @param name the name of the procedure
@@ -22,6 +23,19 @@ public class ProcedureCall extends Expression
     {
         this.list = list;
         this.name = name;
+    }
+
+    public void compile(Emitter e)
+    {
+        if(list != null)
+        {
+            for(Expression exp: list)
+            {
+                exp.compile(e);
+                e.emitPush("$v0");
+            }
+        }
+        e.emit("jal proc" +name);
     }
 
     /**

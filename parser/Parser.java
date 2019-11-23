@@ -276,7 +276,23 @@ public class Parser
                 listParam = parseMaybeParm();
             eat(")");
             eat(";");
-            list.add(new ProcedureDeclaration(name, parseStatement(), listParam));
+            ArrayList<String> variableList = new ArrayList<String>();
+            if(currentToken.equals("VAR"))
+            {
+                eat("VAR");
+                variableList.add(currentToken);
+                eat(currentToken);
+                
+                while(!currentToken.equals(";"))
+                {
+                    eat(",");
+                    variableList.add(currentToken);
+                    eat(currentToken);
+                    
+                }
+                eat(";");
+            }
+            list.add(new ProcedureDeclaration(name, parseStatement(), listParam, variableList));
         }
         Statement stmt = parseStatement();
         eat(".");

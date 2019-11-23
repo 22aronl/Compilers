@@ -1,13 +1,9 @@
-WRITELN(6 * 2 / 3);
-WRITELN(6 / 2 * 3);
-WRITELN(6 / (2 * 3));
-IF 4 <> 4 THEN WRITELN(5);
-Count := 4;
-WHILE Count > 0 DO
+VAR ignore;
+PROCEDURE foo(x);
 BEGIN
-WRITELN(Count);
-Count := Count - 1;
-IF Count = 2 THEN CONTINUE;
-WRITELN(5);
+x:=x + 1;
+WRITELN(1+x);
 END;
+
+ignore := foo(9);
 .

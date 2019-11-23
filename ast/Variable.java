@@ -19,7 +19,7 @@ public class Variable extends Expression
     {
         this.name = name;
     }
-    
+
     /**
      * This gets the name
      * @return the name
@@ -28,7 +28,7 @@ public class Variable extends Expression
     {
         return name;
     }
-    
+
     /**
      * The compile for Variable
      * Stores the variable as $v0
@@ -36,10 +36,19 @@ public class Variable extends Expression
      */
     public void compile(Emitter e)
     {
-        e.emit("la $t0, var" + name);
-        e.emit("lw $v0, ($t0)");
+        if(e.isLocalVariable(name))
+        {
+            int k = e.getOffset(name);
+            e.emit("addu $t0, $sp, " + k);
+            e.emit("lw $v0, ($t0)");
+        }
+        else
+        {
+            e.emit("la $t0, var" + name);
+            e.emit("lw $v0, ($t0)");
+        }
     }
-    
+
     /**
      * Evalutates the expression
      * @param env the environemtn

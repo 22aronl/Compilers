@@ -23,17 +23,17 @@ public class Assignment extends Statement
         this.var = var;
         this.exp = exp;
     }
-    
+
     public Expression getExpression()
     {
         return exp;
     }
-    
+
     public void setExpression(Expression s)
     {
         exp= s;
     }
-    
+
     /**
      * Exectues the code
      * @param env the environment
@@ -42,7 +42,7 @@ public class Assignment extends Statement
     {
         env.setVariable(var, exp.eval(env));
     }
-    
+
     /**
      * Compiles to code the mips file
      * Stores what was in $v0 into the the variable
@@ -51,9 +51,16 @@ public class Assignment extends Statement
     public void compile(Emitter e)
     {
         exp.compile(e);
-        e.emit("sw $v0, var" + var);
+        if(e.isLocalVariable(var))
+        {
+            int k = e.getOffset(var);
+            e.emit("addu $t0, $sp, "+k);
+            e.emit("sw $v0, ($t0)");
+        }
+        else
+            e.emit("sw $v0, var" + var);
     }
-    
+
     /**
      * Gets the variable name
      * @return the variable name

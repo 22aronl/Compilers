@@ -1,6 +1,7 @@
 package ast;
 
 import environment.*;
+import emitter.*;
 import java.util.*;
 /**
  * The procedure
@@ -13,19 +14,31 @@ public class ProcedureDeclaration extends Statement
     private Statement statement;
     private String name;
     private ArrayList<Variable> list;
+    private ArrayList<String> stringList;
     /**
      * Constructor for objects of class ProcedureDeclaration
      * @param name the name of the declaration
      * @param stmt the stmt of the declaration
      * @param list the list of the variables
      */
-    public ProcedureDeclaration(String name, Statement stmt, ArrayList<Variable> list)
+    public ProcedureDeclaration(String name, Statement stmt, ArrayList<Variable> list, ArrayList<String> stringList)
     {
         this.name = name;
         statement = stmt;
         this.list = list;
+        this.stringList = stringList;
+    }
+
+    public String getName()
+    {
+        return name;
     }
     
+    public ArrayList<String> getVariableList()
+    {
+        return stringList;
+    }
+
     /**
      * This executes the procedure
      * @param env the environemtn
@@ -34,7 +47,29 @@ public class ProcedureDeclaration extends Statement
     {
         env.setProcedure(name, this);
     }
-    
+
+    public void compile(Emitter e)
+    {
+
+        e.setProcedureContext(this);
+        e.emit("proc" + name  + ":");
+        e.emit("li $s0, 0");
+        e.emitPush("$s0");
+        e.emitPush("$ra");
+        for(String s : stringList)
+        {
+            e.emit("li $v0, 0");
+            e.emitPush("$v0");
+        }
+
+        statement.compile(e);
+
+        e.emit("addu $sp, $sp, "+(e.getStackHeight()-2)*4);
+        e.emitPop("$ra");
+        e.emit("jr $ra");
+        e.clearProcedureContext();
+    }
+
     /**
      * this gets the statement
      * @return the statement
@@ -43,8 +78,7 @@ public class ProcedureDeclaration extends Statement
     {
         return statement;
     }
-    
-    
+
     /**
      * This gets the list of variables
      * @return the list of variables

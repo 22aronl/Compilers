@@ -35,9 +35,11 @@ public class Condition extends Expression
     public void compile(Emitter e, String targetLabel)
     {
         exp1.compile(e);
-        e.emit("move $t0, $v0");
+        e.emitPush("$v0");
+        
         exp2.compile(e);
         e.emit("move $t1, $v0");
+        e.emitPop("$t0");
         if(op.equals("<>"))
             e.emit("beq $t0, $t1, " + targetLabel);
         else if(op.equals("="))

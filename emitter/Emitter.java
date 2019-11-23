@@ -1,6 +1,8 @@
 package emitter;
 
+import ast.*;
 import java.io.*;
+import java.util.*;
 
 /**
  * The class emitter that prints statements to the given file name
@@ -10,10 +12,11 @@ import java.io.*;
 public class Emitter
 {
     private PrintWriter out;
+    private ProcedureDeclaration current;
     private int nextIf;
     private int nextWhile;
+    private int excessStackHeight = 0;
 
-    
     /**
      * creates an emitter for writing to a new file with given name
      * @param outputFileName the output file name
@@ -29,7 +32,7 @@ public class Emitter
             throw new RuntimeException(e);
         }
     }
-    
+
     /**
      * Gets the next lavel for if ids
      * @return the label
@@ -38,7 +41,7 @@ public class Emitter
     {
         return ++nextIf;
     }
-    
+
     /**
      * Gets the next label for while ids
      * @return the next label
@@ -66,7 +69,8 @@ public class Emitter
     public void emitPush(String reg)
     {
         emit("subu $sp, $sp, 4");
-        emit("sw $v0, ($sp)");
+        emit("sw " + reg + ", ($sp)");
+        excessStackHeight++;
     }
 
     /**
@@ -75,8 +79,58 @@ public class Emitter
      */
     public void emitPop(String reg)
     {
-        emit("lw $t0, ($sp)");
+        emit("lw " + reg+ ", ($sp)");
         emit("addu $sp, $sp, 4");
+        excessStackHeight--;
+    }
+
+    public boolean isLocalVariable(String varName)
+    {
+        if(current == null)
+            return false;
+        for(Variable v : current.getList())
+            if(v.getName().equals(varName))
+                return true;
+        if(varName.equals(current.getName()))
+            return true;
+        for(String s : current.getVariableList())
+            if(s.equals(varName))
+                return true;
+        return false;
+    }
+
+    public int getStackHeight()
+    {
+        return excessStackHeight;
+    }
+
+    public int getOffset(String localVarName)
+    {
+        ArrayList<Variable> list = current.getList();
+        for(int i = list.size() -1; i >=0; i--)
+        {
+            if(list.get(i).getName().equals(localVarName))
+                return (list.size() - i -1) * 4 + excessStackHeight*4;
+        }
+        if(localVarName.equals(current.getName()))
+            return (excessStackHeight-1) * 4;
+        ArrayList<String> l = current.getVariableList();
+        for(int i = 0; i < l.size(); i++)
+            if(l.get(i).equals(localVarName))
+                return (i)*4 + (excessStackHeight - l.size() + i -1)*4;
+
+        return -1;
+    }
+
+    public void setProcedureContext(ProcedureDeclaration proc)
+    {
+        current = proc;
+        excessStackHeight=0;
+    }
+
+    public void clearProcedureContext()
+    {
+        current = null;
     }
 
     /**

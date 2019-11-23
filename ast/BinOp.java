@@ -1,5 +1,6 @@
 package ast;
 
+import java.io.*;
 import environment.*;
 import emitter.*;
 /**
@@ -35,19 +36,19 @@ public class BinOp extends Expression
     public void compile(Emitter e)
     {
         exp1.compile(e);
-        e.emitPush("");
+        e.emitPush("$v0");
         exp2.compile(e);
-        e.emitPop("");
+        e.emitPop("$s1");
         if(op.equals("+"))
-            e.emit("addu $v0, $v0, $t0");
+            e.emit("addu $v0, $v0, $s1");
         else if(op.equals("-"))
-            e.emit("subu $v0, $v0, $t0");
+            e.emit("subu $v0, $v0, $s1");
         else
         {
             if(op.equals("*"))
-                e.emit("mult $v0, $t0");
+                e.emit("mult $v0, $s1");
             else
-                e.emit("div $t0, $v0");
+                e.emit("div $s1, $v0");
             e.emit("mflo $v0");
         }
     }

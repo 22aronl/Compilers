@@ -53,6 +53,8 @@ public class Program extends Statement
 
         e.emit("li $v0 10");
         e.emit("syscall");
+        for(ProcedureDeclaration d : dec)
+            d.compile(e);
     }
 
     /**
