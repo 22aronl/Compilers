@@ -1,16 +1,19 @@
 #BlueJ class context
 comment0.params=name\ stmt\ list\ stringList
 comment0.target=ProcedureDeclaration(java.lang.String,\ Statement,\ java.util.ArrayList,\ java.util.ArrayList)
-comment0.text=\n\ Constructor\ for\ objects\ of\ class\ ProcedureDeclaration\n\ @param\ name\ the\ name\ of\ the\ declaration\n\ @param\ stmt\ the\ stmt\ of\ the\ declaration\n\ @param\ list\ the\ list\ of\ the\ variables\n
+comment0.text=\n\ Constructor\ for\ objects\ of\ class\ ProcedureDeclaration\n\ @param\ name\ the\ name\ of\ the\ declaration\n\ @param\ stmt\ the\ stmt\ of\ the\ declaration\n\ @param\ list\ the\ list\ of\ the\ variables\n\ @param\ stringList\ the\ string\ list\ of\ local\ variables\n
 comment1.params=
 comment1.target=java.lang.String\ getName()
+comment1.text=\n\ Gest\ the\ name\ of\ the\ procedure\n\ @return\ the\ name\n
 comment2.params=
 comment2.target=java.util.ArrayList\ getVariableList()
+comment2.text=\n\ Gets\ the\ variable\ list\ of\ the\ procedure\n\ @return\ the\ arraylist\ of\ these\ variables\n
 comment3.params=env
 comment3.target=void\ exec(environment.Environment)
 comment3.text=\n\ This\ executes\ the\ procedure\n\ @param\ env\ the\ environemtn\n
 comment4.params=e
 comment4.target=void\ compile(emitter.Emitter)
+comment4.text=\n\ Compiles\ the\ proceudre\ Declaration\n\ @param\ e\ the\ emitter\n
 comment5.params=
 comment5.target=Statement\ getStatement()
 comment5.text=\n\ this\ gets\ the\ statement\n\ @return\ the\ statement\n

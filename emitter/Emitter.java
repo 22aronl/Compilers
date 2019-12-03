@@ -84,6 +84,11 @@ public class Emitter
         excessStackHeight--;
     }
 
+    /**
+     * Checks if the variable is a local variable
+     * @param varName the variable's name
+     * @return true if it is a local variable; otherwise false
+     */
     public boolean isLocalVariable(String varName)
     {
         if(current == null)
@@ -99,11 +104,20 @@ public class Emitter
         return false;
     }
 
+    /**
+     * This gets the excess stack height
+     * @return  the excess stack height
+     */
     public int getStackHeight()
     {
         return excessStackHeight;
     }
 
+    /**
+     * Gets the offset needed to acess the given local variable
+     * @param localVarName the local name for the variable
+     * @return the offeset needed, if not returns -1    
+     */
     public int getOffset(String localVarName)
     {
         ArrayList<Variable> list = current.getList();
@@ -122,12 +136,19 @@ public class Emitter
         return -1;
     }
 
+    /**
+     * Sets the procedure context
+     * @param proc hte procedure declaration
+     */
     public void setProcedureContext(ProcedureDeclaration proc)
     {
         current = proc;
         excessStackHeight=0;
     }
 
+    /**
+     * Clears the procedure Context
+     */
     public void clearProcedureContext()
     {
         current = null;

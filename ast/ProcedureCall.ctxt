@@ -4,6 +4,7 @@ comment0.target=ProcedureCall(java.lang.String,\ java.util.ArrayList)
 comment0.text=\n\ Constructs\ procedure\ call\n\ @param\ name\ the\ name\ of\ the\ procedure\n\ @param\ list\ the\ arraylist\ of\ the\ parameters\n
 comment1.params=e
 comment1.target=void\ compile(emitter.Emitter)
+comment1.text=\n\ Compiles\ the\ procedure\ call\n\ @param\ e\ the\ emitter\ to\ emitter\n
 comment2.params=env
 comment2.target=int\ eval(environment.Environment)
 comment2.text=\n\ This\ evalutates\ the\ procedure\n\ @param\ env\ the\ environment\ in\ which\ it\ operates\n\ @return\ if\ the\ thing\ has\ a\ return\ type\n

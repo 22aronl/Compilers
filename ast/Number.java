@@ -30,6 +30,10 @@ public class Number extends Expression
         return value;
     }
     
+    /**
+     * Gets the value of the number
+     * @return the value
+     */
     public int getValue()
     {
         return value;

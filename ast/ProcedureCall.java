@@ -25,6 +25,10 @@ public class ProcedureCall extends Expression
         this.name = name;
     }
 
+    /**
+     * Compiles the procedure call
+     * @param e the emitter to emitter
+     */
     public void compile(Emitter e)
     {
         if(list != null)

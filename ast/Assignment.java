@@ -24,11 +24,19 @@ public class Assignment extends Statement
         this.exp = exp;
     }
 
+    /**
+     * Gets the expressison of the assingment
+     * @return the xpression assingment holds
+     */
     public Expression getExpression()
     {
         return exp;
     }
 
+    /**
+     * Sets the expression of assingment
+     * @param s the expression
+     */
     public void setExpression(Expression s)
     {
         exp= s;

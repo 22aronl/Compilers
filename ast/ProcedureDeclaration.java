@@ -20,8 +20,10 @@ public class ProcedureDeclaration extends Statement
      * @param name the name of the declaration
      * @param stmt the stmt of the declaration
      * @param list the list of the variables
+     * @param stringList the string list of local variables
      */
-    public ProcedureDeclaration(String name, Statement stmt, ArrayList<Variable> list, ArrayList<String> stringList)
+    public ProcedureDeclaration(String name, Statement stmt, ArrayList<Variable> list, 
+            ArrayList<String> stringList)
     {
         this.name = name;
         statement = stmt;
@@ -29,11 +31,19 @@ public class ProcedureDeclaration extends Statement
         this.stringList = stringList;
     }
 
+    /**
+     * Gest the name of the procedure
+     * @return the name
+     */
     public String getName()
     {
         return name;
     }
-    
+
+    /**
+     * Gets the variable list of the procedure
+     * @return the arraylist of these variables
+     */
     public ArrayList<String> getVariableList()
     {
         return stringList;
@@ -48,6 +58,10 @@ public class ProcedureDeclaration extends Statement
         env.setProcedure(name, this);
     }
 
+    /**
+     * Compiles the proceudre Declaration
+     * @param e the emitter
+     */
     public void compile(Emitter e)
     {
 

@@ -21,14 +21,14 @@ public class Tester
      */
     public static void main(String[] args) throws IOException, SkipException
     {
-        for(int i = 1; i < 2; i++)
+        for(int i = 10; i < 13; i++)
         {
-            String file = "parser/parserTest0.txt";
+            String file = "parser/parserTestProc";
             Scanner sc = new Scanner(new FileInputStream(file));
             Parser p = new Parser(sc);
             Environment env = new Environment();
             Program pro = p.parseProgram();
-            pro.compile("codeGenTest3.txt");
+            pro.compile("codeGenTest" + i + ".txt");
             //pro.exec(env);
             System.out.println("Test For"+ i + "  :)");
         }
