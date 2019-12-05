@@ -21,9 +21,11 @@ public class Tester
      */
     public static void main(String[] args) throws IOException, SkipException
     {
-        for(int i = 10; i < 13; i++)
+        for(int i = 0; i < 13; i++)
         {
-            String file = "parser/parserTestProc";
+            if(i == 5 || i == 6)
+                continue;
+            String file = "parser/parserTest" + i + ".txt";
             Scanner sc = new Scanner(new FileInputStream(file));
             Parser p = new Parser(sc);
             Environment env = new Environment();

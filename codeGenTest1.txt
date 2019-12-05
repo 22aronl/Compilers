@@ -1,0 +1,49 @@
+	.data
+	newLine:	.asciiz "\n"
+	varignore:	.word	0
+	.text
+	.globl main
+main:
+	li $v0, 9
+	subu $sp, $sp, 4
+	sw $v0, ($sp)
+	jal procfoo
+	sw $v0, varignore
+	li $v0 10
+	syscall
+procfoo:
+	li $s0, 0
+	subu $sp, $sp, 4
+	sw $s0, ($sp)
+	subu $sp, $sp, 4
+	sw $ra, ($sp)
+	addu $t0, $sp, 8
+	lw $v0, ($t0)
+	subu $sp, $sp, 4
+	sw $v0, ($sp)
+	li $v0, 1
+	lw $s1, ($sp)
+	addu $sp, $sp, 4
+	addu $v0, $v0, $s1
+	addu $t0, $sp, 8
+	sw $v0, ($t0)
+	li $v0, 1
+	subu $sp, $sp, 4
+	sw $v0, ($sp)
+	addu $t0, $sp, 12
+	lw $v0, ($t0)
+	lw $s1, ($sp)
+	addu $sp, $sp, 4
+	addu $v0, $v0, $s1
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	la $a0, newLine
+	li $v0, 4
+	syscall
+	addu $sp, $sp, 0
+	lw $ra, ($sp)
+	addu $sp, $sp, 4
+	lw $s4, ($sp)
+	addu $sp, $sp, 4
+	jr $ra

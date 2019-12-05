@@ -91,7 +91,7 @@ public class Emitter
      */
     public boolean isLocalVariable(String varName)
     {
-        if(current == null)
+        if(current == null || current.getList() == null)
             return false;
         for(Variable v : current.getList())
             if(v.getName().equals(varName))

@@ -1,33 +1,23 @@
 	.data
 	newLine:	.asciiz "\n"
-	varcount:	.word	0
-	varignore:	.word	0
-	vartimes:	.word	0
 	.text
 	.globl main
 main:
-	li $v0, 196
-	sw $v0, varcount
-	li $v0, 0
-	sw $v0, vartimes
-	li $v0, 10
-	subu $sp, $sp, 4
-	sw $v0, ($sp)
-	li $v0, 13
-	subu $sp, $sp, 4
-	sw $v0, ($sp)
-	jal procprintSquares
-	sw $v0, varignore
-	la $t0, varcount
-	lw $v0, ($t0)
+	li $v0, 1
 	move $a0, $v0
 	li $v0, 1
 	syscall
 	la $a0, newLine
 	li $v0, 4
 	syscall
-	la $t0, vartimes
-	lw $v0, ($t0)
+	li $v0, 2
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	la $a0, newLine
+	li $v0, 4
+	syscall
+	li $v0, 3
 	move $a0, $v0
 	li $v0, 1
 	syscall
@@ -36,75 +26,3 @@ main:
 	syscall
 	li $v0 10
 	syscall
-procprintSquares:
-	li $s0, 0
-	subu $sp, $sp, 4
-	sw $s0, ($sp)
-	subu $sp, $sp, 4
-	sw $ra, ($sp)
-	li $v0, 0
-	subu $sp, $sp, 4
-	sw $v0, ($sp)
-	li $v0, 0
-	subu $sp, $sp, 4
-	sw $v0, ($sp)
-	addu $t0, $sp, 20
-	lw $v0, ($t0)
-	addu $t0, $sp, 4
-	sw $v0, ($t0)
-startWhile1:
-	addu $t0, $sp, 4
-	lw $v0, ($t0)
-	subu $sp, $sp, 4
-	sw $v0, ($sp)
-	addu $t0, $sp, 20
-	lw $v0, ($t0)
-	move $t1, $v0
-	lw $t0, ($sp)
-	addu $sp, $sp, 4
-	bgt $t0, $t1, endWhile1
-	addu $t0, $sp, 4
-	lw $v0, ($t0)
-	subu $sp, $sp, 4
-	sw $v0, ($sp)
-	addu $t0, $sp, 8
-	lw $v0, ($t0)
-	lw $s1, ($sp)
-	addu $sp, $sp, 4
-	mult $v0, $s1
-	mflo $v0
-	addu $t0, $sp, 12
-	sw $v0, ($t0)
-	addu $t0, $sp, 12
-	lw $v0, ($t0)
-	move $a0, $v0
-	li $v0, 1
-	syscall
-	la $a0, newLine
-	li $v0, 4
-	syscall
-	addu $t0, $sp, 4
-	lw $v0, ($t0)
-	subu $sp, $sp, 4
-	sw $v0, ($sp)
-	li $v0, 1
-	lw $s1, ($sp)
-	addu $sp, $sp, 4
-	addu $v0, $v0, $s1
-	addu $t0, $sp, 4
-	sw $v0, ($t0)
-	la $t0, vartimes
-	lw $v0, ($t0)
-	subu $sp, $sp, 4
-	sw $v0, ($sp)
-	li $v0, 1
-	lw $s1, ($sp)
-	addu $sp, $sp, 4
-	addu $v0, $v0, $s1
-	sw $v0, vartimes
-	j startWhile1
-endWhile1:
-	addu $sp, $sp, 8
-	lw $ra, ($sp)
-	addu $sp, $sp, 4
-	jr $ra

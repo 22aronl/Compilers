@@ -1,3 +1,4 @@
+VAR n, ignore;
 PROCEDURE print(n);
    WRITELN(n);
 BEGIN

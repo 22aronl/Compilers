@@ -80,6 +80,7 @@ public class ProcedureDeclaration extends Statement
 
         e.emit("addu $sp, $sp, "+(e.getStackHeight()-2)*4);
         e.emitPop("$ra");
+        e.emitPop("$s4");
         e.emit("jr $ra");
         e.clearProcedureContext();
     }

@@ -1,5 +1,7 @@
 	.data
 	newLine:	.asciiz "\n"
+	varignore:	.word	0
+	varf:	.word	0
 	.text
 	.globl main
 main:
@@ -42,6 +44,8 @@ procfoo:
 	addu $sp, $sp, 4
 	lw $ra, ($sp)
 	addu $sp, $sp, 4
+	lw $s4, ($sp)
+	addu $sp, $sp, 4
 	jr $ra
 procbar:
 	li $s0, 0
@@ -59,5 +63,7 @@ procbar:
 	syscall
 	addu $sp, $sp, 0
 	lw $ra, ($sp)
+	addu $sp, $sp, 4
+	lw $s4, ($sp)
 	addu $sp, $sp, 4
 	jr $ra

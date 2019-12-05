@@ -1,6 +1,7 @@
+VAR ignore, f;
 PROCEDURE foo(d);
    ignore := bar(d + f);
-   PROCEDURE bar(f);
+PROCEDURE bar(f);
    WRITELN(f);
 BEGIN
 f := 2;

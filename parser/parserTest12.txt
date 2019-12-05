@@ -1,3 +1,4 @@
+VAR ignore, x;
 PROCEDURE printSquare(n);
         WRITELN(n * n);
 BEGIN

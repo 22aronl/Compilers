@@ -1,4 +1,5 @@
-BEGIN
-    FOR i := 0 DO 10 THEN WRITELN(i);
-END;
-.
+VAR x;
+PROCEDURE v();
+	v := 3
+
+WRITELN(v());
